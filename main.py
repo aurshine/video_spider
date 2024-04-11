@@ -1,18 +1,12 @@
-import requests
-from concurrent.futures import ThreadPoolExecutor as Pool
+import os
 
+import m3u8
 import setting
-import ifeng
 
-with Pool(max_workers=4) as pool:
-    for channel_id in ifeng.CHANNEL_IDS[3:]:
-        resp = requests.get(ifeng.make_ifeng_api_url(1, 1000, channel_id), headers=setting.HEADERS)
-        # 解析 json 数据
-        datas = ifeng.parse_ifeng_response(resp.text)
+if __name__ == '__main__':
+    video_duration = 0
+    for path in os.listdir(setting.WANGYI_VIDEO_PATH):
+        video_path = os.path.join(setting.WANGYI_VIDEO_PATH, path, 'video.mp4')
+        video_duration += m3u8.video_duration(video_path)
 
-        try:
-            # 下载视频
-            for data in datas:
-                pool.submit(ifeng.download_ifeng_video, data, 2, 5)
-        except Exception as e:
-            print(f'下载出错: {e}')
+    print(f"Total video duration: {video_duration / 3600:.2f} h")

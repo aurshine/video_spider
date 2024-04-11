@@ -1,9 +1,8 @@
 import os
 import requests
-from tqdm import tqdm
 from urllib.parse import urljoin
 from typing import List
-
+import cv2
 
 import setting
 import delay
@@ -64,7 +63,7 @@ def merge_download_ts_files(ts_files: List[str], save_path: str):
     :param save_path: 保存路径
     """
     with open(save_path, 'ab') as f:
-        for ts_file in tqdm(ts_files):
+        for ts_file in ts_files:
             f.write(request_video(ts_file))
 
 
@@ -106,3 +105,29 @@ def download_video(video_url, save_path, video_info: dict, download_func=None):
     with open(os.path.join(save_path, 'video_info.txt'), 'w', encoding='utf-8') as f:
         for k, v in video_info.items():
             f.write(f'{k}: {v}\n')
+
+
+def video_duration(video_path) -> float:
+    """
+    获取视频时长 (单位: 秒)
+
+    :param video_path: 视频文件地址
+
+    :return: 视频时长
+    """
+    if not os.path.exists(video_path):
+        print(video_path, '不存在')
+        return 0
+
+    video = cv2.VideoCapture(video_path)
+    fps = video.get(cv2.CAP_PROP_FPS)
+
+    if fps == 0:
+        print(video_path, '无法获取帧率')
+        return 0
+
+    frame_count = video.get(cv2.CAP_PROP_FRAME_COUNT)
+
+    video.release()
+
+    return frame_count / fps

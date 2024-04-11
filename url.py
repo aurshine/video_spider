@@ -1,4 +1,7 @@
+import os
 from typing import Union
+
+import setting
 
 
 class UrlSet:
@@ -14,7 +17,7 @@ class UrlSet:
         else:
             raise TypeError("Invalid type for init_url_data")
 
-        self.file = open(save_path, 'w', encoding='utf-8')
+        self.file = open(save_path, 'a', encoding='utf-8')
         self.save_path = save_path
 
     def add(self, url: str):

@@ -1,7 +1,4 @@
-import os
 from typing import Union
-
-import setting
 
 
 class UrlSet:

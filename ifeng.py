@@ -1,10 +1,12 @@
 import os
 import json
+from typing import List
+from concurrent.futures import ThreadPoolExecutor as Pool
+
 import requests
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-from typing import List
-from concurrent.futures import ThreadPoolExecutor as Pool
+
 
 import m3u8
 import delay
@@ -70,7 +72,7 @@ def download_ifeng_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 
 if __name__ == '__main__':
-    with Pool(max_workers=8) as pool:
+    with Pool(max_workers=10) as pool:
         for channel_id in CHANNEL_IDS:
             resp = requests.get(make_ifeng_api_url(1, 1000, channel_id), headers=setting.HEADERS)
             # 解析 json 数据

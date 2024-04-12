@@ -25,8 +25,8 @@ class UrlSet:
         self.urls.add(url)
         self.file.write(url + '\n')
 
-    def __contains__(self, item):
-        return item in self.urls
+    def __contains__(self, item: str):
+        return str(item).strip() in self.urls
 
     def __len__(self):
         return len(self.urls)

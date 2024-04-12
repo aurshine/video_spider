@@ -50,13 +50,13 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
     vid = data['vid']
     video_url = data['video_data']['sd_url']
 
-    if video_url in video_urls:
+    if vid in video_urls:
         print(f'{title} 视频已下载')
         return
 
     print(f'开始下载 {title} {vid}')
     m3u8.download_video(video_url, os.path.join(setting.WANGYI_VIDEO_PATH, vid), data, m3u8.download_m3u8_video)
-    video_urls.add(video_url)
+    video_urls.add(vid)
     delay.random_delay(delay_min, delay_max)
     print(f'{title} 视频下载完成')
 
@@ -64,13 +64,12 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 if __name__ == '__main__':
     with Pool(max_workers=10) as pool:
         for tab_type in TAB_TYPES:
-            url = make_wy_api_url(tab_type, USER_IDS, size=50)
+            url = make_wy_api_url(tab_type, USER_IDS, size=20)
             response = requests.get(url, headers=setting.HEADERS, timeout=100, stream=True)
             datas = parse_wy_api_response(response.text)
 
             try:
                 for data in datas:
                     pool.submit(download_wangyi_video, data, 1, 4)
-
             except Exception as e:
                 print(f'下载 {tab_type} 频道视频失败: {e}')

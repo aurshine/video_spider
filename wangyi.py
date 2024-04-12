@@ -54,7 +54,7 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
         print(f'{title} 视频已下载')
         return
 
-    print(f'开始下载 {title}')
+    print(f'开始下载 {title} {vid}')
     m3u8.download_video(video_url, os.path.join(setting.WANGYI_VIDEO_PATH, vid), data, m3u8.download_m3u8_video)
     video_urls.add(video_url)
     delay.random_delay(delay_min, delay_max)
@@ -62,10 +62,9 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 
 if __name__ == '__main__':
-    with Pool(max_workers=8) as pool:
-        pool._work_queue.maxsize = 10
+    with Pool(max_workers=10) as pool:
         for tab_type in TAB_TYPES:
-            url = make_wy_api_url(tab_type, USER_IDS)
+            url = make_wy_api_url(tab_type, USER_IDS, size=50)
             response = requests.get(url, headers=setting.HEADERS, timeout=100, stream=True)
             datas = parse_wy_api_response(response.text)
 

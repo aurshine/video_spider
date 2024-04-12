@@ -1,8 +1,10 @@
 import os
+from typing import List, Optional
+
 import requests
 from urllib.parse import urljoin
-from typing import List
 import cv2
+import ffmpeg
 
 import setting
 import delay
@@ -131,3 +133,62 @@ def video_duration(video_path) -> float:
     video.release()
 
     return frame_count / fps
+
+
+def video2audio(video_path, audio_path, audio_info=None):
+    """
+    视频转音频
+
+    需要下载ffmpeg工具 并添加到环境变量中
+
+    :param video_path: 视频文件地址 xxx/video.mp4
+
+    :param audio_path: 音频文件地址 xxx/audio.mp3
+
+    :param audio_info: 音频信息字典, 默认为 None
+    """
+    if not os.path.exists(video_path):
+        print(video_path, '不存在')
+        return
+
+    if os.path.exists(audio_path):
+        print(audio_path, '已存在')
+        return
+
+    print(video_path, '转码为', audio_path)
+    try:
+        ffmpeg.input(video_path).output(audio_path).run()
+        with open(os.path.join(os.path.dirname(audio_path), 'audio_info.txt'), 'w', encoding='utf-8') as f:
+            f.write(str(audio_info))
+
+    except ffmpeg.Error as e:
+        print(f'Error occurred: {e.stderr}\n Video: {video_path}\n')
+
+
+def audio_info(audio_path) -> Optional[dict]:
+    """
+    获取音频信息
+
+    :param audio_path: 音频文件地址 xxx/audio.mp3
+
+    :return: 音频信息字典, 出现错误时返回 None
+    """
+    try:
+        probe = ffmpeg.probe(audio_path)
+        audio_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'audio'), None)
+
+        if audio_stream:
+            sample_rate = int(audio_stream['sample_rate'])
+            channels = int(audio_stream['channels'])
+            bit_rate = int(audio_stream['bit_rate']) if 'bit_rate' in audio_stream else None
+
+            return {
+                'sample_rate': sample_rate,
+                'channels': channels,
+                'bit_rate': bit_rate
+            }
+    except ffmpeg.Error as e:
+        e.with_traceback(None)
+        print(f'Audio: {audio_path}\n')
+
+    return None

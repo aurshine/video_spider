@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 这段视频也太解压了吧！记得不要给自己太大压力哦！
+ipLocation: 四川
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: FUJ1VUAM050835RB
+length: 82
+playersize: 1
+vid: VFUJ1VUAM
+ptime: 2024-04-11 17:19:35
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 幺叔和幺妈
+topicSid: VI5KRAV89
+cover: http://videoimg.ws.126.net/cover/20240411/Yt0Le7aic_cover.jpg
+sectiontitle: 幺叔和幺妈
+topicName: 幺叔和幺妈
+videoTopic: {'tid': 'T1685254700081', 'ename': 'T1685254700081', 'tname': '幺叔和幺妈', 'alias': '记录幺妈和幺叔一家人的日常生活！', 'topic_icons': 'http://mobilepics.ws.126.net/2023/0606/da765891j00rvtd9p0017000gy00gy.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/yellownew.png', 'followed': False}
+sizeSD: 17238
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 三农/农村生活
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/bNizq9WI1_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/Yt0Le7aic_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 82, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 173179, 'quality_desc': '标清', 'quality_index': 360, 'size': 17238, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c5b55b1a67916ca1d1332d3c289294f5f06dea36fa42495bae4e0183f2804636e967462caf6a1a629635c11cb8b91a8725d9c70d8bf59d4e6ab54ced3878677e20920126f8103c6afa8d13093992a43231cf62170c8703277c105a8c9dc2458021a70598a405e19ccb80230cac0fb7b67.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 173179, 'sd_size': 17238, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c5b55b1a67916ca1d1332d3c289294f5f06dea36fa42495bae4e0183f2804636e967462caf6a1a629635c11cb8b91a8725d9c70d8bf59d4e6ab54ced3878677e20920126f8103c6afa8d13093992a43231cf62170c8703277c105a8c9dc2458021a70598a405e19ccb80230cac0fb7b67.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

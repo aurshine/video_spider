@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 大爷19年前存十几万现在变成多少？儿子不结婚为何不着急
+ipLocation: 北京
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: QUI0K14K050835RB
+length: 211
+playersize: 1
+vid: VQUI0K14K
+ptime: 2024-04-11 07:36:21
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 北京钢哥访谈
+topicSid: VGPS30K1M
+cover: http://videoimg.ws.126.net/cover/20240411/XzuvKwq3V_cover.jpg
+sectiontitle: 北京钢哥访谈
+topicName: 北京钢哥访谈
+videoTopic: {'tid': 'T1639037912796', 'ename': 'T1639037912796', 'tname': '北京钢哥访谈', 'alias': '北京百姓生活记录者，看不一样的京城欢迎关注@北京钢哥访谈', 'topic_icons': 'http://dingyue.ws.126.net/2021/1209/033081ebj00r3u86a002kc000ks00ksm.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/yellownew.png', 'followed': False}
+sizeSD: 74981
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/v9fKYpawU_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/XzuvKwq3V_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 211, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 412577, 'quality_desc': '标清', 'quality_index': 360, 'size': 74981, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c21f2f3b4f58d3055d9f66d94d43e6775dfb230ea6f25d00f73bbeb68b0f92f8acb3e4d5d1f20fa4292c9434986fc8c41793a33616ff1f3cfeba341cb942b34fcf1b83457da8cc313dd4d28bcb3e011fca49c6eb87d39cf57e4793848fc220a861b5d0a0d64d810fbefb689157ac6b5f7.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 412577, 'sd_size': 74981, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c21f2f3b4f58d3055d9f66d94d43e6775dfb230ea6f25d00f73bbeb68b0f92f8acb3e4d5d1f20fa4292c9434986fc8c41793a33616ff1f3cfeba341cb942b34fcf1b83457da8cc313dd4d28bcb3e011fca49c6eb87d39cf57e4793848fc220a861b5d0a0d64d810fbefb689157ac6b5f7.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

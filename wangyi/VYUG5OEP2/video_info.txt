@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: ~
+title: 牛人发明的吸粮神器，只要轻轻往地方一放，就能把粮食收到房间！
+ipLocation: 辽宁
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: YUG5OEP2050835RB
+length: 11
+playersize: 1
+vid: VYUG5OEP2
+ptime: 2024-04-10 14:27:41
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 直播生活
+topicSid: VISUSVJIU
+cover: http://videoimg.ws.126.net/cover/20240410/ZO5gI7BPE_cover.jpg
+sectiontitle: 直播生活
+topicName: 直播生活
+videoTopic: {'tid': 'T1710927188823', 'ename': 'T1710927188823', 'tname': '直播生活', 'alias': '传播正能量，社会更美好', 'topic_icons': 'http://cms-bucket.ws.126.net/2024/0320/60ce31e6j00san22a000ec000cw00cwc.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 2154
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 三农/农村生活
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240410/Y8AgaGcSL_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240410/ZO5gI7BPE_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 11, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 111263, 'quality_desc': '标清', 'quality_index': 360, 'size': 2154, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b89e7e3df8541a65fadd97a4b1e5a14f50d12f7872e2f3fe337923bbca35723148b69615f684799805cbe0710b2b068ea9328bbed425f211e6b246384162682b2a1ef338db113493992151cb28c901cd3c91ac21f5f273cb1228175126ed397f19af1be5e1af16a82a.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 111263, 'sd_size': 2154, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b89e7e3df8541a65fadd97a4b1e5a14f50d12f7872e2f3fe337923bbca35723148b69615f684799805cbe0710b2b068ea9328bbed425f211e6b246384162682b2a1ef338db113493992151cb28c901cd3c91ac21f5f273cb1228175126ed397f19af1be5e1af16a82a.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

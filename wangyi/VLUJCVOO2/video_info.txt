@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 几万块预算，你会买飞度还是买宝马？
+ipLocation: 湖北
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: LUJCVOO2050835RB
+length: 226
+playersize: 1
+vid: VLUJCVOO2
+ptime: 2024-04-11 20:31:43
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 小胡说车
+topicSid: VG6PGV1J0
+cover: http://videoimg.ws.126.net/cover/20240411/nDWwBvZSh_cover.jpg
+sectiontitle: 小胡说车
+topicName: 小胡说车
+videoTopic: {'tid': 'T1576580887765', 'ename': 'T1576580887765', 'tname': '小胡说车', 'alias': '连接每个人与车的故事', 'topic_icons': 'http://dingyue.ws.126.net/2021/0611/15c6b3f4j00quj92p0003c0004g004gc.jpg', 'certificationImg': 'https://static.ws.126.net/163/mp/college/static/media/VVVyellow.png', 'followed': False}
+sizeSD: 39082
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/lUBkeadOu_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/nDWwBvZSh_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 226, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 262740, 'quality_desc': '标清', 'quality_index': 360, 'size': 39082, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cd728c6caa8bce381e333cb32fcca7cbb6c1b90da48bcec70c4aebe11eb52b739e92751543755d36faba8ccf5def1d578f073ae0d37d4fcd51b6fa1e15043750cbeb209000753598b62aa638d1c6e067eedb9c4830ddd4c6177ce7f3e259532dfdf4318d6d98f9065b4033e535caf98c2.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 262740, 'sd_size': 39082, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cd728c6caa8bce381e333cb32fcca7cbb6c1b90da48bcec70c4aebe11eb52b739e92751543755d36faba8ccf5def1d578f073ae0d37d4fcd51b6fa1e15043750cbeb209000753598b62aa638d1c6e067eedb9c4830ddd4c6177ce7f3e259532dfdf4318d6d98f9065b4033e535caf98c2.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

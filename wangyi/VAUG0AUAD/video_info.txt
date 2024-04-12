@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 姥爷领着娘家人，浩浩荡荡来赴外孙满月宴，满满的都是对女儿爱的延续
+ipLocation: 福建
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: AUG0AUAD050835RB
+length: 15
+playersize: 0
+vid: VAUG0AUAD
+ptime: 2024-04-10 12:52:55
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 早起观察
+topicSid: VHJHR6K56
+cover: http://videoimg.ws.126.net/cover/20240410/qvkdy4gJe_cover.jpg
+sectiontitle: 早起观察
+topicName: 早起观察
+videoTopic: {'tid': 'T1666607333494', 'ename': 'T1666607333494', 'tname': '早起观察', 'alias': '宣传正能量，传播社会热点', 'topic_icons': 'http://dingyue.ws.126.net/2023/1102/1d155a0ej00s3hx5u0009d000780078p.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 9633
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 三农/农村生活
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240410/jfCU9FBbM_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240410/qvkdy4gJe_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 15, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 342517, 'quality_desc': '标清', 'quality_index': 360, 'size': 9633, 'url': 'http://flv0.bn.netease.com/eda3d671a294218ca59d3f91d4786e75cf577d42a620ee406e6804a1e2cfa244bf0586375edd2437d249fdaab1bef743f5e95c1a7a22969c13703546de549c9fc8e3d9c1d8582025ccdaa850a5af23649f77ec05ff8d0bd9f56216fa8b504d13ca1ebbb0b9db2713ae6fdc54b3fe14fe42d4e141a3c71d5e.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 342517, 'sd_size': 9633, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218ca59d3f91d4786e75cf577d42a620ee406e6804a1e2cfa244bf0586375edd2437d249fdaab1bef743f5e95c1a7a22969c13703546de549c9fc8e3d9c1d8582025ccdaa850a5af23649f77ec05ff8d0bd9f56216fa8b504d13ca1ebbb0b9db2713ae6fdc54b3fe14fe42d4e141a3c71d5e.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240410/qvkdy4gJe_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

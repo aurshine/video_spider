@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 演唱会现场小伙抠鼻屎，顺手抹在前方大哥的衣服上
+ipLocation: 山东
+pageDisplay: 0
+playCount: 30
+voteCount: 1
+downTimes: 0
+replyid: MU3I4CJU050835RB
+length: 8
+playersize: 0
+vid: VMU3I4CJU
+ptime: 2024-04-05 16:53:47
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 社会判官
+topicSid: VIFK2U9JG
+cover: http://videoimg.ws.126.net/cover/20240405/4NZzVawrM_cover.jpg
+sectiontitle: 社会判官
+topicName: 社会判官
+videoTopic: {'tid': 'T1695806451151', 'ename': 'T1695806451151', 'tname': '社会判官', 'alias': '我们站的高望的远', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/0927/0f985590p00s1mrrj0005c000dw00dwc.png', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 2193
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240405/XQJxZHVar_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240405/4NZzVawrM_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 8, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 148499, 'quality_desc': '标清', 'quality_index': 360, 'size': 2193, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b8f09f6efe2a9dde0b9fce94140cd39fdca08dec1460b25c4a1df674bd4e4cff3ec13532a02f816dd713d9d6111543c1e617e0ded413a4576d0340b3d871527b4f4ef22e72541fe5293a3ca34297e69841eac503029cc013a0e340d2a7b326af766bca670043408390.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 148499, 'sd_size': 2193, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b8f09f6efe2a9dde0b9fce94140cd39fdca08dec1460b25c4a1df674bd4e4cff3ec13532a02f816dd713d9d6111543c1e617e0ded413a4576d0340b3d871527b4f4ef22e72541fe5293a3ca34297e69841eac503029cc013a0e340d2a7b326af766bca670043408390.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240405/4NZzVawrM_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

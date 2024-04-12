@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 巴基斯坦斋月到了，外国媳妇偷偷给娘家打钱，中国女婿啥反应？
+ipLocation: 河南
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: RUI84BS7050835RB
+length: 263
+playersize: 1
+vid: VRUI84BS7
+ptime: 2024-04-11 09:47:37
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 中巴混血小若曦
+topicSid: VGB7LON7F
+cover: http://videoimg.ws.126.net/cover/20240411/Bzd7a0VEh_cover.jpg
+sectiontitle: 中巴混血小若曦
+topicName: 中巴混血小若曦
+videoTopic: {'tid': 'T1622898300101', 'ename': 'T1622898300101', 'tname': '巴铁媳妇西德拉', 'alias': '巴铁媳妇在河南的幸福农村生活', 'topic_icons': 'http://dingyue.ws.126.net/2023/1012/7e855772j00s2eeg5000dd000780078p.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/yellownew.png', 'followed': False}
+sizeSD: 51199
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 三农/农村生活
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/Yc7bxLU21_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/Bzd7a0VEh_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 263, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 307597, 'quality_desc': '标清', 'quality_index': 360, 'size': 51199, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c59db3d107e05c1b10a0ef303ebce4075cf5c53993ddf139ebe416bbc2ba4229f958043614ae64f4fda4a327d6d8801b7acfa6cc4ceec1c6621a2b7eaf57ec57d1cadc4605019396a0b726bc602b857f354e7918e6780505d416da0ba00bd7d0e30d13a6bf84fb46b870ddde8d5c7949f.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 307597, 'sd_size': 51199, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c59db3d107e05c1b10a0ef303ebce4075cf5c53993ddf139ebe416bbc2ba4229f958043614ae64f4fda4a327d6d8801b7acfa6cc4ceec1c6621a2b7eaf57ec57d1cadc4605019396a0b726bc602b857f354e7918e6780505d416da0ba00bd7d0e30d13a6bf84fb46b870ddde8d5c7949f.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

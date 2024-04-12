@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 学姐在学弟学妹前自信展示美丽的舞姿
+ipLocation: 湖北
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: ZUAU78VN050835RB
+length: 27
+playersize: 0
+vid: VZUAU78VN
+ptime: 2024-04-08 13:39:45
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 麻江时事
+topicSid: VIO7SFCF4
+cover: http://videoimg.ws.126.net/cover/20240408/VBT2rbn0d_cover.jpg
+sectiontitle: 麻江时事
+topicName: 麻江时事
+videoTopic: {'tid': 'T1705913603210', 'ename': 'T1705913603210', 'tname': '麻江时事', 'alias': '麻江县融媒体中心', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/1219/028e3074j00s5wm8m0019c000yi00yic.jpg', 'followed': False}
+sizeSD: 3681
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog/校园生活
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240408/xZyq3104u_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240408/VBT2rbn0d_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 27, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 92376, 'quality_desc': '标清', 'quality_index': 360, 'size': 3681, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89adbd32ac1706112025cb52bffeec6ff9ecd2bb0f14f9363156c887f6095594a14ba71f3d7a54405d78a883aea67433ac5a9d926cabea548fd2fc99b08473826a07fafc4f6feeaa4b0345bfbc9ab67ba9abb68f52dc7f37d1eef7dcbe426a98762c26e95f0593a32bf.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 92376, 'sd_size': 3681, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89adbd32ac1706112025cb52bffeec6ff9ecd2bb0f14f9363156c887f6095594a14ba71f3d7a54405d78a883aea67433ac5a9d926cabea548fd2fc99b08473826a07fafc4f6feeaa4b0345bfbc9ab67ba9abb68f52dc7f37d1eef7dcbe426a98762c26e95f0593a32bf.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240408/VBT2rbn0d_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

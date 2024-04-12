@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 跟随尼泊尔达米兄弟的儿子去收网，鱼网太简陋了，想吃点鱼不容易
+ipLocation: 广东
+pageDisplay: 0
+playCount: 2844
+voteCount: 230
+downTimes: 0
+replyid: YU6K0LKR050835RB
+length: 364
+playersize: 1
+vid: VYU6K0LKR
+ptime: 2024-04-07 05:30:00
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 野食超哥在尼泊尔
+topicSid: VH5F9T199
+cover: http://videoimg.ws.126.net/cover/20240406/rYPNpWqGe_cover.jpg
+sectiontitle: 野食超哥在尼泊尔
+topicName: 野食超哥在尼泊尔
+videoTopic: {'tid': 'T1651496861797', 'ename': 'T1651496861797', 'tname': '野食超哥在尼泊尔', 'alias': '尼泊尔山区生活', 'topic_icons': 'http://dingyue.ws.126.net/2022/0502/6bcca99cj00rb9b0x0007d0004g004gp.jpg', 'certificationImg': 'https://static.ws.126.net/163/mp/college/static/media/VVVyellow.png', 'followed': False}
+sizeSD: 33706
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 三农/农村生活
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240406/UE9Zv3GFY_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240406/rYPNpWqGe_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 364, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 332022, 'quality_desc': '标清', 'quality_index': 360, 'size': 33706, 'url': 'http://flv0.bn.netease.com/eda3d671a294218ccc098b45b797bbb40093573c13ce3c79a1a54c78f9851d1604500afa22e6012d16fe06d7ae3e7b41c08997426d91e943bbcecd7b3e638ef0b14625606d671e64729702c3f1e3847315f38c778924e89119a5a1e71405020ba6105fa05a6eb2e51aa47c4160398c200059241b77694077.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 332022, 'sd_size': 33706, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218ccc098b45b797bbb40093573c13ce3c79a1a54c78f9851d1604500afa22e6012d16fe06d7ae3e7b41c08997426d91e943bbcecd7b3e638ef0b14625606d671e64729702c3f1e3847315f38c778924e89119a5a1e71405020ba6105fa05a6eb2e51aa47c4160398c200059241b77694077.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

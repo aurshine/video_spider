@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: ~
+title: “祝福”送的太早，默默改为感谢！#结婚 #祝福 #感谢
+ipLocation: 辽宁
+pageDisplay: 0
+playCount: 6
+voteCount: 0
+downTimes: 0
+replyid: CU5CM3B0050835RB
+length: 17
+playersize: 1
+vid: VCU5CM3B0
+ptime: 2024-04-06 09:57:04
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 沈阳之声
+topicSid: VISURIEUQ
+cover: http://videoimg.ws.126.net/cover/20240406/WAuVKI9Gs_cover.jpg
+sectiontitle: 沈阳之声
+topicName: 沈阳之声
+videoTopic: {'tid': 'T1710927179054', 'ename': 'T1710927179054', 'tname': '沈阳之声', 'alias': '传播正能量，社会更美好', 'topic_icons': 'http://cms-bucket.ws.126.net/2024/0320/60ce31e6j00san22a000ec000cw00cwc.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 925
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240406/GqZUlz2iH_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240406/WAuVKI9Gs_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 17, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 43327, 'quality_desc': '标清', 'quality_index': 360, 'size': 925, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b829fd90ddb43d906e8e614714be7e3517125219532741142d061968890db6fca29c0b36b7ccfe80ec5417584f4c7af35aa6e5bad01f5b5e579208355415a3afbc5a448d01a678eb78117568215c396db3e83d1d3eec2ca4295b0c50479c65376383af22bb805b559d.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 43327, 'sd_size': 925, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b829fd90ddb43d906e8e614714be7e3517125219532741142d061968890db6fca29c0b36b7ccfe80ec5417584f4c7af35aa6e5bad01f5b5e579208355415a3afbc5a448d01a678eb78117568215c396db3e83d1d3eec2ca4295b0c50479c65376383af22bb805b559d.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

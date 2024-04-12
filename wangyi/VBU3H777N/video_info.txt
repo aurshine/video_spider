@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 深夜天水高铁站， 人山人海
+ipLocation: 湖北
+pageDisplay: 0
+playCount: 8
+voteCount: 0
+downTimes: 0
+replyid: BU3H777N050835RB
+length: 12
+playersize: 0
+vid: VBU3H777N
+ptime: 2024-04-05 16:37:51
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 麻江简讯
+topicSid: VIO7R226Q
+cover: http://videoimg.ws.126.net/cover/20240405/XdIZozp2N_cover.jpg
+sectiontitle: 麻江简讯
+topicName: 麻江简讯
+videoTopic: {'tid': 'T1705913590233', 'ename': 'T1705913590233', 'tname': '麻江简讯', 'alias': '麻江县融媒体中心', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/1219/be118dcfj00s5wm60001fc000yi00yic.jpg', 'followed': False}
+sizeSD: 1757
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240405/eNSjh3DPu_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240405/XdIZozp2N_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 12, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 85695, 'quality_desc': '标清', 'quality_index': 360, 'size': 1757, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89ac3cce8528efd703511566b9c6d4955979c13f2959483966c53cc2bb0559e1e2cdbb7f92a521c3d52da6bb81efed2159febdb16a153f167a05bd267103edbfc84a9568a12868ecfde8376769e21c1b1e0ca33e3f18d9ec2460e94ccb7bb9eea5486525573607d0423.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 85695, 'sd_size': 1757, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89ac3cce8528efd703511566b9c6d4955979c13f2959483966c53cc2bb0559e1e2cdbb7f92a521c3d52da6bb81efed2159febdb16a153f167a05bd267103edbfc84a9568a12868ecfde8376769e21c1b1e0ca33e3f18d9ec2460e94ccb7bb9eea5486525573607d0423.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240405/XdIZozp2N_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

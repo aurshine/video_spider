@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 美国公婆来串门，告诉我们个意外消息，谈好价格房子又不卖了？
+ipLocation: 河南
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: IUIFCCOI050835RB
+length: 533
+playersize: 1
+vid: VIUIFCCOI
+ptime: 2024-04-11 11:54:20
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 河南A妈在美国
+topicSid: VHUCVL5PI
+cover: http://videoimg.ws.126.net/cover/20240411/RF8tkX1N9_cover.jpg
+sectiontitle: 河南A妈在美国
+topicName: 河南A妈在美国
+videoTopic: {'tid': 'T1678075060703', 'ename': 'T1678075060703', 'tname': '河南A妈在美国', 'alias': 'A妈A爹相识于广东，搬回美国记录生活', 'topic_icons': 'http://dingyue.ws.126.net/2023/0306/cb62d09fj00rr2ysn0005d0004q004qp.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/yellownew.png', 'followed': False}
+sizeSD: 72908
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/E3nCPOoca_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/RF8tkX1N9_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 533, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 488401, 'quality_desc': '标清', 'quality_index': 360, 'size': 72908, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c37be720eaf4355b3886bd82d1e7a93b1a88f651638c9523d2066334c2b8aac4a4f7c28329313aab7d648473b9f0770ba0dd03d1db08de90b5ff0889992dc73628f193a652ac192496eb153eacb9cd35ad177a6b37120b6c82fb657dd60ea58594d19e20f80f6eaaed9e4c21bb21e8079.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 488401, 'sd_size': 72908, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c37be720eaf4355b3886bd82d1e7a93b1a88f651638c9523d2066334c2b8aac4a4f7c28329313aab7d648473b9f0770ba0dd03d1db08de90b5ff0889992dc73628f193a652ac192496eb153eacb9cd35ad177a6b37120b6c82fb657dd60ea58594d19e20f80f6eaaed9e4c21bb21e8079.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

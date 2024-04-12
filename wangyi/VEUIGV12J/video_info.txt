@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: ~
+title: 广西“三月三”今起连休4天，且不调休，你有广西的朋友吗？羡慕吗？
+ipLocation: 河南
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: EUIGV12J050835RB
+length: 12
+playersize: 0
+vid: VEUIGV12J
+ptime: 2024-04-11 12:21:59
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 大象新闻
+topicSid: VFDLIKLQ3
+cover: http://videoimg.ws.126.net/cover/20240411/V7OAtRQ0D_cover.jpg
+sectiontitle: 大象新闻
+topicName: 大象新闻
+videoTopic: {'tid': 'T1577329383286', 'ename': 'T1577329383286', 'tname': '大象新闻', 'alias': '河南广电官方网易号！', 'topic_icons': 'http://dingyue.ws.126.net/lBzJEG38BR67TX6Uh2zoZed2qjgfKxyhG2=0cYrUg98us1577328724265.jpeg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 2954
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 旅游/旅行故事
+accoutClassify: 2
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/fjzF4v7hX_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/V7OAtRQ0D_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 12, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 137754, 'quality_desc': '标清', 'quality_index': 360, 'size': 2954, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c03b8d6b0caa9f5c42f454da899b88a835b3dde5750a18c4c1f610bbc6f5aed6542408959971a8915320315546b5db3c92cc0b4ca0dfdc1d85b76897ee414f1e440d882d13b358e11d0f65952896b6d2cf96c89c955091b0651a9b712650d1dd94e110fa0b6def9fe2af6d7a4121b0666.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 137754, 'sd_size': 2954, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c03b8d6b0caa9f5c42f454da899b88a835b3dde5750a18c4c1f610bbc6f5aed6542408959971a8915320315546b5db3c92cc0b4ca0dfdc1d85b76897ee414f1e440d882d13b358e11d0f65952896b6d2cf96c89c955091b0651a9b712650d1dd94e110fa0b6def9fe2af6d7a4121b0666.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240411/V7OAtRQ0D_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

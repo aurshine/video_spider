@@ -1,0 +1,44 @@
+replyCount: 0
+videosource: original
+title: 北京大爷当过兵后事业编，退体金很低，说现在挺惨。经历了什么？
+ipLocation: 北京
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: WUGS71FD050835RB
+length: 225
+playersize: 1
+vid: VWUGS71FD
+ptime: 2024-04-12 05:55:00
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 本土热点！淘美食享优惠、周边旅行、亲子健康、生日解码 。 在这里，感受不一样的北京！
+topicSid: VC3A75VQ9
+cover: http://videoimg.ws.126.net/cover/20240410/7RoNpUbQt_cover.jpg
+sectiontitle: 北京范儿
+topicName: 北京范儿
+videoTopic: {'tid': 'T1445583417640', 'ename': 'T1445583417640', 'tname': '大北京范儿', 'alias': '在这里，感受不一样的北京！', 'topic_icons': 'http://mobilepics.ws.126.net/2023/0614/667f85ffj00rw7w0000250008c008c.jpg', 'followed': False}
+sizeSD: 60975
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 2
+videoRatio: 1.77
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: False
+firstFrameImg: http://videoimg.ws.126.net/cover/20240410/hPmuzLHTd_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240410/7RoNpUbQt_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 225, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 314785, 'quality_desc': '标清', 'quality_index': 360, 'size': 60975, 'url': 'http://flv0.bn.netease.com/eda3d671a294218ca3018e55a127193cb5ebb9589d06c1f2a4bfa08eecaccfc8ed16a77c4b07ac07f1697d31551c5f96531d9e84bdd3983d3379b575870282412d9af40f34d67109c0a8839e8df233348bdac382854495b64c25697d29202cf4117395bd413b622ca2f9534425a4d61617e730d49c2c5190.m3u8'}], 'play_info_hevc': None, 'ratio': 1.77, 'sd_preload_size': 314785, 'sd_size': 60975, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218ca3018e55a127193cb5ebb9589d06c1f2a4bfa08eecaccfc8ed16a77c4b07ac07f1697d31551c5f96531d9e84bdd3983d3379b575870282412d9af40f34d67109c0a8839e8df233348bdac382854495b64c25697d29202cf4117395bd413b622ca2f9534425a4d61617e730d49c2c5190.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

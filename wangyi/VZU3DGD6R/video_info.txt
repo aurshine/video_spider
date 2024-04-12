@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 女孩太紧张了第一次和男友出来
+ipLocation: 湖北
+pageDisplay: 0
+playCount: 207
+voteCount: 3
+downTimes: 0
+replyid: ZU3DGD6R050835RB
+length: 13
+playersize: 0
+vid: VZU3DGD6R
+ptime: 2024-04-05 15:32:57
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 麻江时事
+topicSid: VIO7SFCF4
+cover: http://videoimg.ws.126.net/cover/20240405/k9ncF8WGB_cover.jpg
+sectiontitle: 麻江时事
+topicName: 麻江时事
+videoTopic: {'tid': 'T1705913603210', 'ename': 'T1705913603210', 'tname': '麻江时事', 'alias': '麻江县融媒体中心', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/1219/028e3074j00s5wm8m0019c000yi00yic.jpg', 'followed': False}
+sizeSD: 1789
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240405/GEqxsoXYJ_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240405/k9ncF8WGB_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 13, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 81957, 'quality_desc': '标清', 'quality_index': 360, 'size': 1789, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b80b636cb0a509b1babd0a41dac6ec2931f266320343f4f255219b4c5a825245d6868396351f65606a74d8384be6e421d92da6a8ba4eb10adc2b2281a1cd5e657f230238ef37da58358a417b9dbbd119e8bea3eea7c893b24d7c1757d599595f83de737b3d3139c370.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 81957, 'sd_size': 1789, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b80b636cb0a509b1babd0a41dac6ec2931f266320343f4f255219b4c5a825245d6868396351f65606a74d8384be6e421d92da6a8ba4eb10adc2b2281a1cd5e657f230238ef37da58358a417b9dbbd119e8bea3eea7c893b24d7c1757d599595f83de737b3d3139c370.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240405/k9ncF8WGB_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: ~
+title: 真的很想和你们山东人做朋友 
+ipLocation: 湖南
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: FUJ2L4B4050835RB
+length: 32
+playersize: 0
+vid: VFUJ2L4B4
+ptime: 2024-04-11 17:31:09
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 果然视频News
+topicSid: VF9126008
+cover: http://videoimg.ws.126.net/cover/20240411/sIcL29WFK_cover.jpg
+sectiontitle: 果然视频News
+topicName: 果然视频News
+videoTopic: {'tid': 'T1585277891281', 'ename': 'T1585277891281', 'tname': '冲浪少女杨美丽', 'alias': '认准杨美丽，吃瓜不费力，生活更如意', 'topic_icons': 'http://dingyue.ws.126.net/2023/0731/05738e79j00rynop1000cd000780078p.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 1536
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/DUSBjpGKr_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/sIcL29WFK_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 32, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 51049, 'quality_desc': '标清', 'quality_index': 360, 'size': 1536, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c4293f90aa303cb7e235d110e8edee9277e711d73a4b9abd32ef3edb716a4261c70fc2398a650d4cccc95d11b35b9b42f381fc0ef4952e1d139e1a6f794cd7eaf1029db7993058fac7f61ef18094c57a3199831e6b9033ca7e85279408a6cdd62f73e59f018e04e7d488d11a8d6d02b6e.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 51049, 'sd_size': 1536, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c4293f90aa303cb7e235d110e8edee9277e711d73a4b9abd32ef3edb716a4261c70fc2398a650d4cccc95d11b35b9b42f381fc0ef4952e1d139e1a6f794cd7eaf1029db7993058fac7f61ef18094c57a3199831e6b9033ca7e85279408a6cdd62f73e59f018e04e7d488d11a8d6d02b6e.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240411/sIcL29WFK_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

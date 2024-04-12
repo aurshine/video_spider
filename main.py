@@ -4,7 +4,6 @@ from tqdm import tqdm
 
 import m3u8
 import setting
-import wangyi
 
 
 def check_paths_exist(dir_path, other_paths: list) -> list:
@@ -36,15 +35,17 @@ def dir_batch_operation(base_dir_path):
         dir_path = os.path.join(base_dir_path, path)
         if not os.path.isdir(dir_path):
             continue
-        not_exist_paths += check_paths_exist(dir_path, check_paths)
 
         video_path = os.path.join(dir_path, 'video.mp4')
         audio_path = os.path.join(dir_path, 'audio.mp3')
+        not_exist_paths += check_paths_exist(dir_path, check_paths)
+        continue
+
+        video_duration += m3u8.video_duration(video_path)
         m3u8.video2audio(video_path, audio_path, m3u8.audio_info(audio_path))
         m3u8.write_audio_info(audio_path)
         not_exist_paths += check_paths_exist(dir_path, check_paths)
 
-        video_duration += m3u8.video_duration(video_path)
     return not_exist_paths, video_duration
 
 
@@ -52,8 +53,8 @@ def main():
     video_duration = 0
     not_exist_paths = []
 
-    video_duration += dir_batch_operation(setting.WANGYI_VIDEO_PATH)[1]
-    video_duration += dir_batch_operation(setting.IFENG_VIDEO_PATH)[1]
+    not_exist_paths += dir_batch_operation(setting.WANGYI_VIDEO_PATH)[0]
+    not_exist_paths += dir_batch_operation(setting.IFENG_VIDEO_PATH)[0]
 
     print(f"Total video duration: {video_duration / 3600:.2f} h")
     print(f"Not exist paths:\n[{'\n'.join(not_exist_paths)}]")

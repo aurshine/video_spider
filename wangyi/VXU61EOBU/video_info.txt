@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 每个小孩都像你一样，中国未来才有希望
+ipLocation: 山东
+pageDisplay: 0
+playCount: 4
+voteCount: 0
+downTimes: 0
+replyid: XU61EOBU050835RB
+length: 107
+playersize: 0
+vid: VXU61EOBU
+ptime: 2024-04-06 16:00:04
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 华山论舌
+topicSid: VIFK27FNM
+cover: http://videoimg.ws.126.net/cover/20240406/4CHD621ni_cover.jpg
+sectiontitle: 华山论舌
+topicName: 华山论舌
+videoTopic: {'tid': 'T1695806453288', 'ename': 'T1695806453288', 'tname': '华山论舌', 'alias': '我们站的高望的远', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/0927/3877a88cp00s1mrs20006c000dw00dwc.png', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 20309
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240406/Ug1D2ehdH_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240406/4CHD621ni_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 107, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 184892, 'quality_desc': '标清', 'quality_index': 360, 'size': 20309, 'url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b82aae3ccd53252705d39ae8b32bad3ec5cb45040cf592a58af7f6a92d4d1d1cb385e21456645456f714388b59ad366262c3230d00225459f1e787ee1dfe6e5e1852a6a810cd9a6abd0b8c5eca6b343c773ce9809cc3e6f0fa87b7801204f135aeb84e68d93c5f2d15.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 184892, 'sd_size': 20309, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218cb27c0b8c7ef989b82aae3ccd53252705d39ae8b32bad3ec5cb45040cf592a58af7f6a92d4d1d1cb385e21456645456f714388b59ad366262c3230d00225459f1e787ee1dfe6e5e1852a6a810cd9a6abd0b8c5eca6b343c773ce9809cc3e6f0fa87b7801204f135aeb84e68d93c5f2d15.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240406/4CHD621ni_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

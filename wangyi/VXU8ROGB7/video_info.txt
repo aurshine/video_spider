@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 网友拍下同桌一个午休的杰作，表示谁还没和同桌玩过粉笔台球啊。
+ipLocation: 广东
+pageDisplay: 0
+playCount: 8
+voteCount: 0
+downTimes: 0
+replyid: XU8ROGB7050835RB
+length: 6
+playersize: 0
+vid: VXU8ROGB7
+ptime: 2024-04-07 18:18:15
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 张家口冬奥频道！心有温度，闻达塞外。新闻、爆料、帮助、互动，张家口人的生活方式。
+topicSid: VEFQE3G5O
+cover: http://videoimg.ws.126.net/cover/20240407/qXTUPWZdS_cover.jpg
+sectiontitle: 张家口9频道
+topicName: 张家口9频道
+videoTopic: {'tid': 'T1526894902737', 'ename': 'T1526894902737', 'tname': '张家口986音乐广播', 'alias': '张家口广播电视台', 'topic_icons': 'http://dingyue.ws.126.net/2020/0911/775806eej00qggzsv0006c0004g004gc.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 2115
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240407/KXzg3xEJi_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240407/qXTUPWZdS_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 6, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 186844, 'quality_desc': '标清', 'quality_index': 360, 'size': 2115, 'url': 'http://flv0.bn.netease.com/eda3d671a294218ca59d3f91d4786e75c5249b95dace5012f38a0791c38e1b3ef5d9a122ba3ca8e8abfd1c0546747c635071d89baa9923ef4cdd092899edf2988d74f55529e11a8d4d5ad04be19398394246da69343636ee4aa379f3239ced866071cf8aef647dc372fb63e89a111db32f6aadf43050c9a8.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 186844, 'sd_size': 2115, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218ca59d3f91d4786e75c5249b95dace5012f38a0791c38e1b3ef5d9a122ba3ca8e8abfd1c0546747c635071d89baa9923ef4cdd092899edf2988d74f55529e11a8d4d5ad04be19398394246da69343636ee4aa379f3239ced866071cf8aef647dc372fb63e89a111db32f6aadf43050c9a8.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240407/qXTUPWZdS_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

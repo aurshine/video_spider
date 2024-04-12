@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 孕晚期妈妈晚上谁在沙发上来回折腾找让自己舒服的姿势
+ipLocation: 江西
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: MUJ12FV9050835RB
+length: 33
+playersize: 0
+vid: VMUJ12FV9
+ptime: 2024-04-11 17:03:30
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 奇观趣闻
+topicSid: VII3PDVT5
+cover: http://videoimg.ws.126.net/cover/20240411/IsdHMW4aC_cover.jpg
+sectiontitle: 奇观趣闻
+topicName: 奇观趣闻
+videoTopic: {'tid': 'T1698921752172', 'ename': 'T1698921752172', 'tname': '奇观趣闻', 'alias': '河南新闻广播', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/1102/dd04a843j00s3hlxt000uc000m800m8c.jpg', 'followed': False}
+sizeSD: 2874
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/qBEmZeb2d_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/IsdHMW4aC_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 33, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 72704, 'quality_desc': '标清', 'quality_index': 360, 'size': 2874, 'url': 'http://flv0.bn.netease.com/eda3d671a294218caace0b882e1cccf3753c90aa50e5b40aa75c0b2bc6a8dbe1b529291a6523a4a35549ecfa15112e64c714dc6b88c106d5c36a50cfadbc716a808eac92edfa655259ebd6c6462b131bddb17b7cd6c5d4cdedd9e73cb8609ae965e0697c5999558bc6f8fb63aec627a1e28fb4f53047786f.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 72704, 'sd_size': 2874, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218caace0b882e1cccf3753c90aa50e5b40aa75c0b2bc6a8dbe1b529291a6523a4a35549ecfa15112e64c714dc6b88c106d5c36a50cfadbc716a808eac92edfa655259ebd6c6462b131bddb17b7cd6c5d4cdedd9e73cb8609ae965e0697c5999558bc6f8fb63aec627a1e28fb4f53047786f.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240411/IsdHMW4aC_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

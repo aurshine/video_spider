@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 拿冰淇淋等孙女放学的爷爷，满眼只有孙女
+ipLocation: 福建
+pageDisplay: 0
+playCount: 0
+voteCount: 0
+downTimes: 0
+replyid: AUJ8JK7K050835RB
+length: 14
+playersize: 0
+vid: VAUJ8JK7K
+ptime: 2024-04-11 19:15:11
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 早起观察
+topicSid: VHJHR6K56
+cover: http://videoimg.ws.126.net/cover/20240411/q1FYQdBcu_cover.jpg
+sectiontitle: 早起观察
+topicName: 早起观察
+videoTopic: {'tid': 'T1666607333494', 'ename': 'T1666607333494', 'tname': '早起观察', 'alias': '宣传正能量，传播社会热点', 'topic_icons': 'http://dingyue.ws.126.net/2023/1102/1d155a0ej00s3hx5u0009d000780078p.jpg', 'certificationImg': 'http://img2.cache.netease.com/m/newsapp/reading/vip/bluenew.png', 'followed': False}
+sizeSD: 3894
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240411/qS2KXQRMF_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240411/q1FYQdBcu_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 14, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 155397, 'quality_desc': '标清', 'quality_index': 360, 'size': 3894, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89af4ddbc4f5297bb3a84beab572a79a157dc70933e7f3001e8b3dc58ccccddefffed3f6ffa8b253253884db1ce6175bf0e6e483979b5bdb6305745d0bbdaa506968c328e7bab266cb95a1357317613c8e3cfe3652276548c2653c9ecbe9fddb46d013d820190d71f77.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 155397, 'sd_size': 3894, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89af4ddbc4f5297bb3a84beab572a79a157dc70933e7f3001e8b3dc58ccccddefffed3f6ffa8b253253884db1ce6175bf0e6e483979b5bdb6305745d0bbdaa506968c328e7bab266cb95a1357317613c8e3cfe3652276548c2653c9ecbe9fddb46d013d820190d71f77.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240411/q1FYQdBcu_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

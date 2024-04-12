@@ -1,0 +1,45 @@
+replyCount: 0
+videosource: original
+title: 快看 ，昨晚拍到的流星 ，快许愿万一突现了呢
+ipLocation: 湖北
+pageDisplay: 0
+playCount: 7
+voteCount: 0
+downTimes: 0
+replyid: BU3JG5O5050835RB
+length: 7
+playersize: 0
+vid: VBU3JG5O5
+ptime: 2024-04-05 17:17:41
+replyBoard: video_bbs
+danmu: 0
+topicDesc: 麻江简讯
+topicSid: VIO7R226Q
+cover: http://videoimg.ws.126.net/cover/20240405/m0DyJ2CK7_cover.jpg
+sectiontitle: 麻江简讯
+topicName: 麻江简讯
+videoTopic: {'tid': 'T1705913590233', 'ename': 'T1705913590233', 'tname': '麻江简讯', 'alias': '麻江县融媒体中心', 'topic_icons': 'http://cms-bucket.ws.126.net/2023/1219/be118dcfj00s5wm60001fc000yi00yic.jpg', 'followed': False}
+sizeSD: 920
+sizeHD: 0
+sizeSHD: 0
+autoPlay: 0
+category: 生活/生活vlog
+accoutClassify: 4
+videoRatio: 0.56
+covCLevel: 3
+cntCLevel: 3
+replyStatus: 0
+recomCount: 0
+shortV: True
+firstFrameImg: http://videoimg.ws.126.net/cover/20240405/nLCXxcODN_1stframe.jpg
+fullSizeImg: http://videoimg.ws.126.net/cover/20240405/m0DyJ2CK7_cover.jpg
+videoHideTitle: 0
+albumCount: 0
+coDisplayType: 0
+video_data: {'duration': 7, 'hd_preload_size': 0, 'hd_size': 0, 'hd_url': '', 'hevc_hdpreload_size': 0, 'hevc_shdpreload_size': 0, 'hideAd': False, 'knowledgeVideo': 0, 'play_info': [{'encode_format': 'avc', 'label': 'avc_m3u8_sd', 'preload_size': 74833, 'quality_desc': '标清', 'quality_index': 360, 'size': 920, 'url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89a25782458b18c69df9c7d4520dfaef4394a06fc1dedfc450fab11def1842415b1c1137620096c0dd97db12af0ffcd8103af5b7095a63c217988b8d7c6b7f5f86518a95a09b62e5b6914007e80320309e86065d444c2c3fd42305d9ef2f5a44ace2dd140b1c0f37d36.m3u8'}], 'play_info_hevc': None, 'ratio': 0.56, 'sd_preload_size': 74833, 'sd_size': 920, 'sd_url': 'http://flv0.bn.netease.com/eda3d671a294218c92427e43d6ebd89a25782458b18c69df9c7d4520dfaef4394a06fc1dedfc450fab11def1842415b1c1137620096c0dd97db12af0ffcd8103af5b7095a63c217988b8d7c6b7f5f86518a95a09b62e5b6914007e80320309e86065d444c2c3fd42305d9ef2f5a44ace2dd140b1c0f37d36.m3u8', 'shd_preload_size': 0, 'shd_size': 0, 'shd_url': '', 'soloVideo': ''}
+shortVideoImg: http://videoimg.ws.126.net/cover/20240405/m0DyJ2CK7_cover_short.jpg
+verticalVideo: False
+galaxyExtra: {"moduleId":"rec0001","sceneId":"video1"}
+riskLevel: 0
+paidLength: 0
+paidPreview: 0

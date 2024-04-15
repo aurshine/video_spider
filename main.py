@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 import m3u8
 import setting
-
+import check
 
 def check_paths_exist(dir_path, other_paths: list) -> list:
     """
@@ -62,4 +62,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    check.check_duration()
+    # main()

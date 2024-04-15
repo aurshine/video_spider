@@ -90,7 +90,7 @@ def check_num_files(path: str = None):
     return num_files
 
 
-def check_dfs_num_files(path: str = None):
+def check_dfs_num_files(path: str = None, root=False):
     """
     递归检查 path 下的文件数量
 
@@ -98,6 +98,9 @@ def check_dfs_num_files(path: str = None):
 
     :return: 文件数量
     """
+    if path is None:
+        path = input('输入文件夹地址: ')
+
     num_files = 0
     if not os.path.exists(path):
         num_files = 0
@@ -108,6 +111,8 @@ def check_dfs_num_files(path: str = None):
             sub_path = os.path.join(path, sub_path)
             num_files += check_dfs_num_files(sub_path)
 
+    if root:
+        print(f'文件夹 {path} 下共有 {num_files} 个文件')
     return num_files
 
 
@@ -119,6 +124,6 @@ if __name__ == '__main__':
     elif inputs == 'num_files':
         check_num_files()
     elif inputs == 'dfs_num_files':
-        check_dfs_num_files()
+        check_dfs_num_files(root=True)
     else:
         print('输入错误')

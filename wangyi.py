@@ -76,7 +76,6 @@ if __name__ == '__main__':
                 try:
                     for data in datas:
                         pool.submit(download_wangyi_video, data, 1, 4)
-                        sys.exit()
                 except Exception as e:
                     traceback.print_exc()
                     print(f'下载 {tab_type} 频道视频失败: {e}')

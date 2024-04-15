@@ -136,6 +136,24 @@ def download_m3u8_video(m3u8_url: str, save_path: str, cover: bool = False):
     merge_download_ts_files(ts_files, save_path, cover=cover)
 
 
+def auto_download_video(video_url: str, save_path: str, cover: bool = False):
+    """
+    根据视频 url 自动选择下载函数
+
+    :param video_url: 视频url
+
+    :param save_path: 保存路径
+
+    :param cover: 当前文件存在时是否覆盖, 默认为 False
+    """
+    if video_url.endswith('.mp4'):
+        return download_mp4_video(video_url, save_path, cover=cover)
+    elif video_url.endswith('.m3u8'):
+        return download_m3u8_video(video_url, save_path, cover=cover)
+    else:
+        print(f'不支持除 .mp4, .m3u8 以外的视频格式 {video_url}')
+
+
 def video_info(video_path) -> Optional[dict]:
     """
     获取视频信息
@@ -191,7 +209,7 @@ def write_video_info(video_path, _video_info: any = None, cover=False):
     return _video_info
 
 
-def download_video(video_url, save_path, _video_info: Optional[dict] = None, download_func=None, cover: bool = False):
+def download_video(video_url, save_path, _video_info: Optional[dict] = None, cover: bool = False):
     """
     从给定的 url 下载视频并保存到指定路径
 
@@ -205,19 +223,15 @@ def download_video(video_url, save_path, _video_info: Optional[dict] = None, dow
 
     :param _video_info: 视频信息, 若为 None 则不保存视频信息
 
-    :param download_func: 下载函数, 需要接受下载地址和保存地址两个参数, 默认为 download_mp4_video
-
     :param cover: 当文件存在时是否覆盖, 默认为 False
     """
-    if download_func is None:
-        download_func = download_mp4_video
 
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 
     video_path = os.path.join(save_path, 'video.mp4')
     audio_path = os.path.join(save_path, 'audio.mp3')
-    download_func(video_url, video_path, cover=cover)
+    auto_download_video(video_url, video_path, cover=cover)
     video2audio(video_path, audio_path, cover=cover)
     write_audio_info(audio_path, cover=cover)
 

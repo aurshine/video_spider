@@ -57,7 +57,8 @@ def main():
     not_exist_paths += dir_batch_operation(setting.IFENG_VIDEO_PATH)[0]
 
     print(f"Total video duration: {video_duration / 3600:.2f} h")
-    print(f"Not exist paths:\n[{'\n'.join(not_exist_paths)}]")
+    ret = '\n'.join(not_exist_paths)
+    print(f"Not exist paths:[{ret}]")
 
 
 if __name__ == '__main__':

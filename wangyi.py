@@ -1,9 +1,11 @@
 import os
 import json
+import sys
 import time
 from typing import List
 import requests
 from concurrent.futures import ThreadPoolExecutor as Pool
+import traceback
 
 import m3u8
 import delay
@@ -65,7 +67,7 @@ if __name__ == '__main__':
     with Pool(max_workers=20) as pool:
         # 下载量 = len(TAB_TYPES) * 5 * 50
         for tab_type in TAB_TYPES:
-            for i in range(5):
+            for i in range(20):
                 url = make_wy_api_url(tab_type, USER_IDS, size=50)
                 response = requests.get(url, headers=setting.HEADERS, timeout=100, stream=True)
                 datas = parse_wy_api_response(response.text)
@@ -73,5 +75,9 @@ if __name__ == '__main__':
                 try:
                     for data in datas:
                         pool.submit(download_wangyi_video, data, 1, 4)
+                        sys.exit()
                 except Exception as e:
+                    traceback.print_exc()
                     print(f'下载 {tab_type} 频道视频失败: {e}')
+                    if input('是否继续下载? (y/n)').lower() != 'y':
+                        sys.exit()

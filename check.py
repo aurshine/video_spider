@@ -1,9 +1,12 @@
 import os
+import shutil
 from typing import List
 
 from tqdm import tqdm
 
 import m3u8
+import setting
+import wangyi
 
 
 def check_paths_exist(dir_path, other_paths: list) -> list:
@@ -27,7 +30,7 @@ def check_paths_exist(dir_path, other_paths: list) -> list:
     return not_exist_paths
 
 
-def check_duration(video_dirs: List[str] = None, unit = None) -> float:
+def check_duration(video_dirs: List[str] = None, unit: str = None) -> float:
     """
     检查 video_dirs 中所有视频文件的总时长
 
@@ -51,10 +54,11 @@ def check_duration(video_dirs: List[str] = None, unit = None) -> float:
 
     for video_dir in video_dirs:
         for path in tqdm(os.listdir(video_dir)):
-            if not os.path.isdir(os.path.join(video_dir, path)):
+            path = os.path.join(video_dir, path)
+            if not os.path.isdir(path):
                 continue
 
-            video_path = os.path.join(video_dir, path, 'video.mp4')
+            video_path = os.path.join(path, 'video.mp4')
             video_duration += m3u8.video_duration(video_path)
 
     if unit == 'h':
@@ -62,7 +66,7 @@ def check_duration(video_dirs: List[str] = None, unit = None) -> float:
     elif unit == 'm':
         video_duration /= 60
 
-    print(f'视频总时长: {video_duration}{unit}')
+    print(f'视频总时长: {video_duration: .2f}{unit}')
 
     return video_duration
 
@@ -90,11 +94,13 @@ def check_num_files(path: str = None):
     return num_files
 
 
-def check_dfs_num_files(path: str = None, root=False):
+def check_dfs_num_files(path: str = None, root=True):
     """
     递归检查 path 下的文件数量
 
     :param path: 文件夹地址
+
+    :param root: 是否是根目录
 
     :return: 文件数量
     """
@@ -109,21 +115,93 @@ def check_dfs_num_files(path: str = None, root=False):
     else:
         for sub_path in os.listdir(path):
             sub_path = os.path.join(path, sub_path)
-            num_files += check_dfs_num_files(sub_path)
+            num_files += check_dfs_num_files(sub_path, False)
 
     if root:
         print(f'文件夹 {path} 下共有 {num_files} 个文件')
     return num_files
 
 
+def check_delete(dir_name):
+    """
+    删除 ./wangyi/dir_name 文件夹, 仅限wangyi文件夹使用
+
+    :param dir_name: 文件夹名
+    """
+    dir_name = os.path.join(setting.WANGYI_VIDEO_PATH, dir_name)
+    if os.path.exists(dir_name):
+        if os.path.isdir(dir_name):
+            shutil.rmtree(dir_name)
+        else:
+            os.remove(dir_name)
+
+
+def check_deletes(dir_names: List[str] = None):
+    """
+    批量删除 ./wangyi/dir_name 文件夹, 仅限wangyi文件夹使用
+
+    :param dir_names:
+    """
+    if dir_names is None:
+        dir_names = input('输入文件夹名, 用空格分隔: ').split()
+
+    lines = None
+    with open(wangyi.DOWNLOAD_URL_PATH, 'r', encoding='utf-8') as f:
+        lines = set(f.readlines())
+
+    for dir_name in dir_names:
+        check_delete(dir_name)
+        if dir_name in lines:
+            lines.remove(dir_name)
+
+    with open(wangyi.DOWNLOAD_URL_PATH, 'w', encoding='utf-8') as f:
+        f.writelines(lines)
+
+
+def check_complete_dir(dir_name):
+    """
+    判断 ./wangyi/dir_name 文件夹是否下载完成
+
+    """
+    COMPLETE_FILES = ['video.mp4']
+
+    dir_name = os.path.join(setting.WANGYI_VIDEO_PATH, dir_name)
+    if os.path.isdir(dir_name):
+        for file_name in COMPLETE_FILES:
+            file_path = os.path.join(dir_name, file_name)
+            if not os.path.exists(file_path):
+                return False
+
+    return True
+
+
+def delete_not_complete_dirs():
+    """
+    删除 ./wangyi/dir_name 不完整的文件夹, 仅限wangyi文件夹使用
+    """
+    dir_names = filter(lambda x: not check_complete_dir(x), os.listdir(setting.WANGYI_VIDEO_PATH))
+    check_deletes(dir_names)
+    print('删除:\n', '\n'.join(dir_names))
+
+
+def check_help(commands):
+    print('命令列表: ', ', '.join(commands.keys()))
+
+
 if __name__ == '__main__':
     inputs = input('command: ')
+    COMMANDS = {'help': check_help,
+                'duration': check_duration,
+                'num_files': check_num_files,
+                'dfs_num_files': check_dfs_num_files,
+                'del': check_deletes,
+                'del_n_complete': delete_not_complete_dirs,
+                }
 
-    if inputs == 'duration':
-        check_duration()
-    elif inputs == 'num_files':
-        check_num_files()
-    elif inputs == 'dfs_num_files':
-        check_dfs_num_files(root=True)
+    if inputs in COMMANDS.keys():
+        if inputs == 'help':
+            check_help(COMMANDS)
+        else:
+            COMMANDS[inputs]()
     else:
         print('输入错误')

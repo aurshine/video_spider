@@ -1,0 +1,10 @@
+posterUrl: http://p0.ifengimg.com/pmop/2017/0819/EE73EA15157984F132E3479D72E28F679E80C4D5_size105_w448_h252.png
+title: 一部最悲情的电影《末代皇帝》，回自已家，还要买门票
+columnName: 凤凰视频
+newsTime: 2023-03-16 17:40:25
+duration: 208
+guid: 6b04a227-7774-4ced-a801-83b55429d47e
+base62Id: 7gfoqiHK6Kb
+url: //v.ifeng.com/c/7gfoqiHK6Kb
+type: video
+commentUrl: ucms_7gfoqiHK6Kb

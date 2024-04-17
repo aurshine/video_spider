@@ -1,6 +1,10 @@
 import os
+import sys
 import json
 from typing import List
+from urllib.parse import urljoin, urlparse, parse_qs
+from concurrent.futures import ThreadPoolExecutor as Pool
+import traceback
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,7 +15,7 @@ from url import UrlSet
 
 DOWNLOAD_URL_PATH = os.path.join(setting.WANGYI_PUB_VIDEO_PATH, 'download_video_url')
 
-WANGYI_PUB_INDEX_URL = 'https://open.163.com/newview/search/'
+WANGYI_PUB_INDEX_URL = 'https://open.163.com'
 
 video_urls = UrlSet(DOWNLOAD_URL_PATH, DOWNLOAD_URL_PATH)
 
@@ -35,29 +39,59 @@ def parse_wangyi_pub_response(data: str) -> List[dict]:
     return json.loads(data)['data']['list']
 
 
-def download_wangyi_pub_video(data: dict):
+def download_wangyi_pub_video(html: str, data: dict, mid: str):
     """
     下载网易公开课视频
 
-    :param data: 网易公开课数据
+    :param html: 网易公开课视频页面 HTML 内容
+
+    :param data: 视频信息
+
+    :param mid: 视频编号
     """
-    pid = data['plid']
-    title = ''.join(BeautifulSoup(data['title'], 'lxml').strings)
-
-    if pid in video_urls:
-        print(f'{title} 视频已下载')
-        return
-
-    html = m3u8.request_text(f'https://open.163.com/newview/movie/free?pid={pid}')
     soup = BeautifulSoup(html, 'lxml')
-    video_url = soup.select_one('#open-video_html5_api')['src']
+    title = soup.select_one('.video-title').string
 
+    video_url = urljoin(WANGYI_PUB_INDEX_URL, soup.select_one('.video-main-box > video').get('src'))
     print(f'开始下载 {title} 视频')
-    m3u8.download_video(video_url, os.path.join(setting.WANGYI_PUB_VIDEO_PATH, pid), _video_info=data)
-    video_urls.add(pid)
+
+    m3u8.download_video(video_url, os.path.join(setting.WANGYI_PUB_VIDEO_PATH, mid), _video_info=data)
+    video_urls.add(mid)
     print(f'{title} 视频下载完成')
 
 
-if __name__ == '__main__':
+def download_wangyi_pub_video_list(data: dict, num_workers=10):
+    """
+    下载网易公开课视频列表
+
+    :param data:
+
+    :num_workers: 线程数
+
+    :return:
+    """
+    pid = data['plid']
+    html = m3u8.request_text(f'https://open.163.com/newview/movie/free?pid={pid}')
+    soup = BeautifulSoup(html, 'lxml')
+
+    video_list = soup.select('.video-list a')
+
+    with Pool(num_workers) as pool:
+        for video in video_list:
+            video_url = urljoin(WANGYI_PUB_INDEX_URL, video.get('href'))
+            mid = parse_qs(urlparse(video_url).query).get('mid')[0]
+            pool.submit(download_wangyi_pub_video, m3u8.request_text(video_url), data, mid)
+
+
+def main():
     search_words = [tag.string for tag in BeautifulSoup(m3u8.request_text(WANGYI_PUB_INDEX_URL), 'lxml').select('span.link')]
-    print(search_words)
+
+    for search_word in search_words:
+        url = make_search_url(search_word)
+        datas = parse_wangyi_pub_response(m3u8.request_text(url))
+        for data in datas:
+            download_wangyi_pub_video_list(data)
+
+
+if __name__ == '__main__':
+    main()

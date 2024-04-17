@@ -58,7 +58,7 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
         return
 
     print(f'开始下载 {title} {vid}')
-    m3u8.download_video(video_url, os.path.join(setting.WANGYI_VIDEO_PATH, vid), data)
+    m3u8.download_video(video_url, os.path.join(setting.WANGYI_VIDEO_PATH, vid), data, cover=True)
     video_urls.add(vid)
     delay.random_delay(delay_min, delay_max)
     print(f'{title} 视频下载完成')

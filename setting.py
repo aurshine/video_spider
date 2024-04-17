@@ -12,7 +12,10 @@ WANGYI_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'wangyi')
 # 网易公开课视频文件夹地址
 WANGYI_PUB_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'wangyi_pub')
 
-for path in [YANG_VIDEO_PATH, IFENG_VIDEO_PATH, WANGYI_PUB_VIDEO_PATH]:
+# 洛谷文件夹
+LUOGU_PATH = os.path.join(os.path.dirname(__file__), 'luogu')
+
+for path in [YANG_VIDEO_PATH, IFENG_VIDEO_PATH, WANGYI_PUB_VIDEO_PATH, LUOGU_PATH]:
     if not os.path.exists(path):
         os.makedirs(path)
 

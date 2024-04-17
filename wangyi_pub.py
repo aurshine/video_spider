@@ -84,13 +84,13 @@ def download_wangyi_pub_video_list(data: dict, num_workers=10):
 
 
 def main():
-    search_words = [tag.string for tag in BeautifulSoup(m3u8.request_text(WANGYI_PUB_INDEX_URL), 'lxml').select('span.link')]
+    search_words = ['物理学', '化学', '生物学', '天文学', '地球科学', '数学', '计算机科学', '电子工程', '机械工程', '材料科学与工程', '化学工程', '生物工程', '土木工程', '医学', '药学', '医疗保健管理', '公共卫生学', '心理学', '社会学', '经济学', '政治学', '法学', '教育学', '市场营销学', '媒体与传播学', '历史学', '文学', '艺术史与美术学', '文化研究', '语言学', '哲学', '宗教学']
 
     for search_word in search_words:
         url = make_search_url(search_word)
         datas = parse_wangyi_pub_response(m3u8.request_text(url))
         for data in datas:
-            download_wangyi_pub_video_list(data)
+            download_wangyi_pub_video_list(data, 20)
 
 
 if __name__ == '__main__':

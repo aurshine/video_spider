@@ -39,10 +39,17 @@ def video_duration(video_path, video_capture=None) -> float:
 
 
 @delay.Delay(0, 2)
-def request_video(url: str) -> bytes:
-    response = requests.get(url, headers=setting.HEADERS)
+def request_video(url: str, **kwargs) -> bytes:
+    response = requests.get(url, headers=setting.HEADERS, **kwargs)
     response.raise_for_status()
     return response.content
+
+
+@delay.Delay(0, 2)
+def request_text(url: str, **kwargs) -> str:
+    response = requests.get(url, headers=setting.HEADERS, **kwargs)
+    response.raise_for_status()
+    return response.text
 
 
 def parse_m3u8(url: str) -> List[str]:

@@ -184,6 +184,42 @@ def delete_not_complete_dirs():
     print('删除:\n', '\n'.join(dir_names))
 
 
+def check_size(dir_name=None, unit=None):
+    """
+    检查 文件夹的大小
+
+    :param dir_name:
+
+    :param unit: 单位, 可选: k (KB), m (MB), g (GB)
+
+    :return:
+    """
+    if dir_name is None:
+        dir_name = input('输入文件夹名: ')
+    if unit is None:
+        unit = input('输入单位, 可选: b (B), k (KB), m (MB), g (GB) t(TB): ')
+
+    dir_name = os.path.join(os.path.dirname(__file__), dir_name)
+    size = 0
+    if os.path.isdir(dir_name):
+        for root, dirs, files in tqdm(os.walk(dir_name)):
+            size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
+    else:
+        size = os.path.getsize(dir_name)
+
+    if unit == 'k':
+        size /= 1024
+    elif unit == 'm':
+        size /= 1024 ** 2
+    elif unit == 'g':
+        size /= 1024 ** 3
+    elif unit == 't':
+        size /= 1024 ** 4
+
+    print(f'{dir_name} 大小为 {size: .2f}{unit}')
+    return size
+
+
 def check_help(commands):
     print('命令列表: ', ', '.join(commands.keys()))
 
@@ -196,6 +232,7 @@ if __name__ == '__main__':
                 'dfs_num_files': check_dfs_num_files,
                 'del': check_deletes,
                 'del_n_complete': delete_not_complete_dirs,
+                'size': check_size,
                 }
 
     if inputs in COMMANDS.keys():

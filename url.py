@@ -1,3 +1,4 @@
+import os
 from typing import Union
 
 
@@ -5,6 +6,10 @@ class UrlSet:
     def __init__(self, init_url_data: Union[set, str, None], save_path):
         if init_url_data is None:
             init_url_data = set()
+
+        if not os.path.exists(save_path):
+            f = open(save_path, 'w', encoding='utf-8')
+            f.close()
 
         if isinstance(init_url_data, set):
             self.urls = init_url_data

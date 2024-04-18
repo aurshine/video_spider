@@ -237,10 +237,10 @@ def download_video(video_url, save_path, _video_info: Optional[dict] = None, cov
         os.mkdir(save_path)
 
     video_path = os.path.join(save_path, 'video.mp4')
-    audio_path = os.path.join(save_path, 'audio.mp3')
+    # audio_path = os.path.join(save_path, 'audio.mp3')
     auto_download_video(video_url, video_path, cover=cover)
-    video2audio(video_path, audio_path, cover=cover)
-    write_audio_info(audio_path, cover=cover)
+    # video2audio(video_path, audio_path, cover=cover)
+    # write_audio_info(audio_path, cover=cover)
 
     if _video_info is not None:
         with open(os.path.join(save_path, 'video_info.txt'), 'w', encoding='utf-8') as f:

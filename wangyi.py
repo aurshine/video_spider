@@ -65,24 +65,26 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 
 def main():
-    num_page, size = 30, 30
-    # 下载量 = len(TAB_TYPES) * num_page * size
+    with Pool(max_workers=10) as pool:
+        num_page, size = 30, 30
+        # 下载量 = len(TAB_TYPES) * num_page * size
 
-    for i in range(num_page):
-        random.shuffle(TAB_TYPES)  # 随机打乱TAB_TYPES列表
-        for tab_type in TAB_TYPES:
-            url = make_wy_api_url(tab_type, USER_IDS, size=size)
-            response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
-            datas = parse_wy_api_response(response.text)
+        for i in range(num_page):
+            random.shuffle(TAB_TYPES)  # 随机打乱TAB_TYPES列表
+            for tab_type in TAB_TYPES:
+                url = make_wy_api_url(tab_type, USER_IDS, size=size)
+                response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
+                datas = parse_wy_api_response(response.text)
 
-            try:
-                for data in datas:
-                    download_wangyi_video(data, 1, 2)
-            except Exception as e:
-                traceback.print_exc()
-                print(f'下载 {tab_type} 频道视频失败: {e}')
-                if input('是否继续下载? (y/n)').lower() != 'y':
-                    break
+                try:
+                    for data in datas:
+                        pool.submit(download_wangyi_video, data, 1, 2)
+
+                except Exception as e:
+                    traceback.print_exc()
+                    print(f'下载 {tab_type} 频道视频失败: {e}')
+                    if input('是否继续下载? (y/n)').lower() != 'y':
+                        break
 
 
 if __name__ == '__main__':

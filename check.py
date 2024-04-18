@@ -7,6 +7,7 @@ from tqdm import tqdm
 import m3u8
 import setting
 import wangyi
+import wangyi_pub
 
 
 def check_paths_exist(dir_path, other_paths: list) -> list:
@@ -220,6 +221,29 @@ def check_size(dir_name=None, unit=None):
     return size
 
 
+def url_not_exist(dir_name=None):
+    """
+    dir_name 下的文件夹 对应的下载链接是否存在
+
+    :return:
+    """
+    if dir_name is None:
+        dir_name = input('输入文件夹名: ')
+
+    url_set = None
+    if dir_name == 'wangyi':
+        url_set = wangyi.video_urls
+    elif dir_name == 'wangyi_pub':
+        url_set = wangyi_pub.video_urls
+
+    dir_name = os.path.join(os.getcwd(), dir_name)
+    for name in os.listdir(dir_name):
+        if name not in url_set:
+            name = os.path.join(dir_name, name)
+            if os.path.isdir(name):
+                shutil.rmtree(name)
+
+
 def check_help(commands):
     print('命令列表: ', ', '.join(commands.keys()))
 
@@ -233,6 +257,7 @@ if __name__ == '__main__':
                 'del': check_deletes,
                 'del_n_complete': delete_not_complete_dirs,
                 'size': check_size,
+                'del_n_exist': url_not_exist,
                 }
 
     if inputs in COMMANDS.keys():

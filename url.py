@@ -23,9 +23,9 @@ class UrlSet:
         self.save_path = save_path
 
     def add(self, url: str):
-        url = url.strip()
-        self.urls.add(url)
-        self.file.write(url + '\n')
+        if url not in self.urls:
+            self.urls.add(url)
+            self.file.write(url + '\n')
 
     def __contains__(self, item: str):
         return str(item).strip() in self.urls

@@ -53,6 +53,7 @@ def download_wangyi_pub_video(html: str, data: dict, mid: str):
     title = soup.select_one('.video-title').string
 
     video_url = urljoin(WANGYI_PUB_INDEX_URL, soup.select_one('.video-main-box > video').get('src'))
+
     print(f'开始下载 {title} 视频')
 
     m3u8.download_video(video_url, os.path.join(setting.WANGYI_PUB_VIDEO_PATH, mid), _video_info=data)

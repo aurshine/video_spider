@@ -62,5 +62,6 @@ def main():
 
 
 if __name__ == '__main__':
-    check.check_duration()
+    a = '1 2 3 4 5'.splitlines()
+    print(type(a[0]))
     # main()

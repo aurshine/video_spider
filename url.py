@@ -1,5 +1,7 @@
 import os
 from typing import Union
+import threading
+import atexit
 
 
 class UrlSet:
@@ -19,13 +21,20 @@ class UrlSet:
         else:
             raise TypeError("Invalid type for init_url_data")
 
-        self.file = open(save_path, 'a', encoding='utf-8')
         self.save_path = save_path
+        self.file = open(save_path, 'a', encoding='utf-8')
+        atexit.register(self.file.close)
+        self.lock = threading.Lock()
 
     def add(self, url: str):
-        if url not in self.urls:
-            self.urls.add(url)
-            self.file.write(url + '\n')
+        self.lock.acquire()
+        try:
+            if url not in self.urls:
+                self.urls.add(url)
+                with open(self.save_path, 'a', encoding='utf-8') as f:
+                    f.write(url + '\n')
+        finally:
+            self.lock.release()
 
     def __contains__(self, item: str):
         return str(item).strip() in self.urls
@@ -38,6 +47,3 @@ class UrlSet:
 
     def __str__(self):
         return str(self.urls)
-
-    def __del__(self):
-        self.file.close()

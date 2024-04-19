@@ -21,6 +21,7 @@ def make_luogu_url(page, difficulty=None, tag=None, keyword=None):
 
 
 def get_problems_data(page=None, difficulty=None, tag=None, keyword=None):
+    print(f'page = {page} difficulty = {difficulty} tag = {tag} keyword = {keyword}')
     url = make_luogu_url(page, difficulty, tag, keyword)
     datas = json.loads(m3u8.request_text(url))
     return datas
@@ -45,7 +46,7 @@ def random_problem(difficulty: Union[int, tuple] = None, tag=None, keyword=None)
 
 
 def main():
-    url, title = random_problem(difficulty=4, tag=None, keyword=None)
+    url, title = random_problem(difficulty=4, tag=None, keyword='图论')
 
     print(f'title: {title}\n url: {url}')
 

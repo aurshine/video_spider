@@ -66,13 +66,14 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 def main():
     with Pool(max_workers=10) as pool:
-        num_page, size = 30, 30
+        num_page, size = 20, 30
         # 下载量 = len(TAB_TYPES) * num_page * size
 
         for i in range(num_page):
             random.shuffle(TAB_TYPES)  # 随机打乱TAB_TYPES列表
             for tab_type in TAB_TYPES:
                 url = make_wy_api_url(tab_type, USER_IDS, size=size)
+                response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
                 response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
                 datas = parse_wy_api_response(response.text)
 

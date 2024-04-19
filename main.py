@@ -1,5 +1,5 @@
 import os
-
+import time
 from tqdm import tqdm
 
 import m3u8
@@ -62,6 +62,5 @@ def main():
 
 
 if __name__ == '__main__':
-    a = '1 2 3 4 5'.splitlines()
-    print(type(a[0]))
-    # main()
+    print(str(int(time.time())))
+    # url = f"https://upos-sz-mirrorali.bilivideo.com/upgcxcode/53/61/3876153/3876153_da8-1-30216.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline={t}&gen=playurlv2&os=alibv&oi=3707331698&trid=3a80c0427da8456abae003a8541a690fp&mid=0&platform=pc&upsig=defd7b6bd54065ff246bde0e3e39434b&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=0,3&buvid=18FA8D3C-729F-A603-6909-63DA246F8B6414403infoc&build=0&f=p_0_0&agrr=1&bw=8394&logo=80000000"

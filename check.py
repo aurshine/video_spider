@@ -224,6 +224,20 @@ def check_help() -> None:
     print('命令列表: ', ', '.join(COMMANDS.keys()))
 
 
+def dir_names(paths: List[str]):
+    """
+    获取路径的目录名
+
+    :param paths: 路径列表
+
+    :return: 路径的目录名列表
+    """
+    if isinstance(paths, str):
+        paths = [paths]
+
+    return [os.path.dirname(path) for path in paths if os.path.exists(path)]
+
+
 COMMANDS = {'help': check_help,
             'duration': check_duration,
             'num_files': check_num_files,
@@ -231,8 +245,10 @@ COMMANDS = {'help': check_help,
             'del': check_deletes,
             'size': check_size,
             'ls': ls,
-            'print': print,
             'is_error': video_is_error,
+            'dir_names': dir_names,
+            'len': len,
+            'print': print,
             }
 
 

@@ -346,4 +346,12 @@ def video_is_ok(video_path):
     :return: True or False
     """
     video = cv2.VideoCapture(video_path)
-    return video.isOpened()
+    if not video.isOpened():
+        return False
+
+    ret, frame = video.read()
+    if not ret:
+        return False
+
+    video.release()
+    return True

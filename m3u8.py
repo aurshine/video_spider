@@ -345,15 +345,10 @@ def video_is_ok(video_path):
 
     :return: True or False
     """
-    video = cv2.VideoCapture(video_path)
-    if not video.isOpened():
-        video.release()
+    try:
+        probe = ffmpeg.probe(video_path)
+        if probe['streams'][0]['codec_type'] == 'video':
+            return True
         return False
-
-    ret, frame = video.read()
-    if not ret:
-        video.release()
+    except ffmpeg.Error:
         return False
-
-    video.release()
-    return True

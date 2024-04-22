@@ -5,9 +5,7 @@ from typing import List, Union
 from tqdm import tqdm
 
 import m3u8
-import setting
-import wangyi
-import wangyi_pub
+
 
 
 def check_paths_exist(dir_path, other_paths: list) -> list:
@@ -216,13 +214,6 @@ def video_is_error(dir_names: Union[str, List[str]]):
     return broken_videos
 
 
-def check_help() -> None:
-    """
-    打印命令列表
-    """
-    print('命令列表: ', ', '.join(COMMANDS.keys()))
-
-
 def dir_names(paths: List[str]):
     """
     获取路径的目录名
@@ -235,6 +226,13 @@ def dir_names(paths: List[str]):
         paths = [paths]
 
     return [os.path.dirname(path) for path in paths if os.path.exists(path)]
+
+
+def check_help() -> None:
+    """
+    打印命令列表
+    """
+    print('命令列表: ', ', '.join(COMMANDS.keys()))
 
 
 COMMANDS = {'help': check_help,

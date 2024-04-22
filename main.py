@@ -12,6 +12,5 @@ def main():
 
 
 if __name__ == '__main__':
-    a = '1 2 3 '
-    print(str.split(a))
+    print(m3u8.video_is_ok(r'D:\spider\ifeng\7gfoqiHK6Kb\video.mp4'))
     # main()

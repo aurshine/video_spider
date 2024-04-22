@@ -31,7 +31,7 @@ def check_paths_exist(dir_path, other_paths: list) -> list:
     return not_exist_paths
 
 
-def check_duration(video_dirs: List[str] = None, unit: str = None) -> float:
+def check_duration(video_dirs: List[str] = None, unit: str = 'h') -> float:
     """
     检查 video_dirs 中所有视频文件的总时长
 
@@ -133,8 +133,10 @@ def check_delete(dir_name: str) -> None:
     if os.path.exists(dir_name):
         if os.path.isdir(dir_name):
             shutil.rmtree(dir_name)
+            print(f'删除文件夹 {dir_name}')
         else:
             os.remove(dir_name)
+            print(f'删除文件 {dir_name}')
 
 
 def check_deletes(dir_names: Union[str, List[str]]) -> None:
@@ -191,8 +193,28 @@ def ls(dir_name) -> List[str]:
     :return: 文件列表
     """
     paths = [os.path.join(os.getcwd(), dir_name, name) for name in os.listdir(dir_name)]
-    print('\n'.join(paths))
+    # print('\n'.join(paths))
     return paths
+
+
+def video_is_error(dir_names: Union[str, List[str]]):
+    """
+    判断文件夹下的 video.pm4 是否损坏
+
+    :param dir_names: 文件夹地址
+
+    :return: 返回损坏的 video.mp4 路径
+    """
+    broken_videos = []
+    for dir_names in tqdm(dir_names):
+        video_path = os.path.join(dir_names, 'video.mp4')
+        if not os.path.exists(video_path):
+            continue
+
+        if not m3u8.video_is_ok(video_path):
+            broken_videos.append(video_path)
+
+    return broken_videos
 
 
 def check_help() -> None:
@@ -209,37 +231,26 @@ COMMANDS = {'help': check_help,
             'del': check_deletes,
             'size': check_size,
             'ls': ls,
-            'print': print
+            'print': print,
+            'is_error': video_is_error,
             }
 
 
-def run_command(source_command: str, args=None):
+def run_command(command: str, args):
     """
-    运行一个命令, 输入命令的格式为: 命令名 参数1 参数2... 参数n
+    运行一个命令
 
-    :param source_command: 命令
+    :param command: 命令名
 
-    :param args: 命令参数, 可以为 list 或非 list 参数，最终一定封包为 list 对象
+    :param args: 命令参数
 
     :return: 命令的返回值
     """
-    command, *extra_args = source_command.split()
-
-    if args is None:
-        args = extra_args
-    else:
-        if len(extra_args):
-            # 当输入来自上一个命令的输出时， 当前命令不应该包含输入
-            raise RuntimeError(f'输入来自于上一个命令的输出{args}, 当前命令 {source_command} 不能包含输入参数')
-
-    if not isinstance(args, list):
-        args = [args]
-
     if command in COMMANDS.keys():
-        return COMMANDS[command](*args)
+        return COMMANDS[command](args)
     else:
-        # command 不存在的情况下将source_command解析为一个输入命令
-        return source_command
+        # command 不存在的情况下将 command 解析为一个输入命令
+        return command
 
 
 def run_chain_commands(commands: str):

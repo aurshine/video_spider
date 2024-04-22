@@ -335,3 +335,15 @@ def video2audio(video_path, audio_path, _audio_info=None, cover=False):
 
     except ffmpeg.Error as e:
         print(f'Error occurred: {e.stderr}\n Video: {video_path}\n')
+
+
+def video_is_ok(video_path):
+    """
+    判断视频是否正常
+
+    :param video_path: 视频文件地址
+
+    :return: True or False
+    """
+    video = cv2.VideoCapture(video_path)
+    return video.isOpened()

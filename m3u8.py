@@ -347,10 +347,12 @@ def video_is_ok(video_path):
     """
     video = cv2.VideoCapture(video_path)
     if not video.isOpened():
+        video.release()
         return False
 
     ret, frame = video.read()
     if not ret:
+        video.release()
         return False
 
     video.release()

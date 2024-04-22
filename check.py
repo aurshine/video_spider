@@ -193,7 +193,6 @@ def ls(dir_name) -> List[str]:
     :return: 文件列表
     """
     paths = [os.path.join(os.getcwd(), dir_name, name) for name in os.listdir(dir_name)]
-    # print('\n'.join(paths))
     return paths
 
 
@@ -249,6 +248,7 @@ COMMANDS = {'help': check_help,
             'dir_names': dir_names,
             'len': len,
             'print': print,
+            'split': str.split,
             }
 
 

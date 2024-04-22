@@ -12,5 +12,6 @@ def main():
 
 
 if __name__ == '__main__':
-    print(os.getcwd())
+    a = '1 2 3 '
+    print(str.split(a))
     # main()

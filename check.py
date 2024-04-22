@@ -1,6 +1,6 @@
 import os
 import shutil
-from typing import List
+from typing import List, Union
 
 from tqdm import tqdm
 
@@ -72,13 +72,13 @@ def check_duration(video_dirs: List[str] = None, unit: str = None) -> float:
     return video_duration
 
 
-def check_num_files(path: str = None):
+def check_num_files(path: str = None) -> int:
     """
     检查 path 下的文件数量
 
     :param path: 文件夹地址
 
-    :return:
+    :return: 文件数量
     """
     if path is None:
         path = input('输入文件夹地址: ')
@@ -95,7 +95,7 @@ def check_num_files(path: str = None):
     return num_files
 
 
-def check_dfs_num_files(path: str = None, root=True):
+def check_dfs_num_files(path: str = None, root=True) -> int:
     """
     递归检查 path 下的文件数量
 
@@ -120,16 +120,16 @@ def check_dfs_num_files(path: str = None, root=True):
 
     if root:
         print(f'文件夹 {path} 下共有 {num_files} 个文件')
+
     return num_files
 
 
-def check_delete(dir_name):
+def check_delete(dir_name: str) -> None:
     """
-    删除 ./wangyi/dir_name 文件夹, 仅限wangyi文件夹使用
+    删除 dir_name 文件夹
 
     :param dir_name: 文件夹名
     """
-    dir_name = os.path.join(setting.WANGYI_VIDEO_PATH, dir_name)
     if os.path.exists(dir_name):
         if os.path.isdir(dir_name):
             shutil.rmtree(dir_name)
@@ -137,70 +137,31 @@ def check_delete(dir_name):
             os.remove(dir_name)
 
 
-def check_deletes(dir_names: List[str] = None):
+def check_deletes(dir_names: Union[str, List[str]]) -> None:
     """
-    批量删除 ./wangyi/dir_name 文件夹, 仅限wangyi文件夹使用
+    批量删除 ./dir_name 文件夹
 
-    :param dir_names:
+    :param dir_names: 文件夹名列表
     """
-    if dir_names is None:
-        dir_names = input('输入文件夹名, 用空格分隔: ').split()
-
-    lines = None
-    with open(wangyi.DOWNLOAD_URL_PATH, 'r', encoding='utf-8') as f:
-        lines = set(f.readlines())
+    if isinstance(dir_names, str):
+        dir_names = [dir_names]
 
     for dir_name in dir_names:
         check_delete(dir_name)
-        if dir_name in lines:
-            lines.remove(dir_name)
-
-    with open(wangyi.DOWNLOAD_URL_PATH, 'w', encoding='utf-8') as f:
-        f.writelines(lines)
 
 
-def check_complete_dir(dir_name):
-    """
-    判断 ./wangyi/dir_name 文件夹是否下载完成
-
-    """
-    COMPLETE_FILES = ['video.mp4']
-
-    dir_name = os.path.join(setting.WANGYI_VIDEO_PATH, dir_name)
-    if os.path.isdir(dir_name):
-        for file_name in COMPLETE_FILES:
-            file_path = os.path.join(dir_name, file_name)
-            if not os.path.exists(file_path):
-                return False
-
-    return True
-
-
-def delete_not_complete_dirs():
-    """
-    删除 ./wangyi/dir_name 不完整的文件夹, 仅限wangyi文件夹使用
-    """
-    dir_names = filter(lambda x: not check_complete_dir(x), os.listdir(setting.WANGYI_VIDEO_PATH))
-    check_deletes(dir_names)
-    print('删除:\n', '\n'.join(dir_names))
-
-
-def check_size(dir_name=None, unit=None):
+def check_size(dir_name, unit='g') -> float:
     """
     检查 文件夹的大小
 
     :param dir_name:
 
-    :param unit: 单位, 可选: k (KB), m (MB), g (GB)
+    :param unit: 单位, 可选: b (B), k (KB), m (MB), g (GB) t(TB)
 
-    :return:
+    :return: 文件夹大小
     """
-    if dir_name is None:
-        dir_name = input('输入文件夹名: ')
-    if unit is None:
-        unit = input('输入单位, 可选: b (B), k (KB), m (MB), g (GB) t(TB): ')
+    dir_name = os.path.join(os.getcwd(), dir_name)
 
-    dir_name = os.path.join(os.path.dirname(__file__), dir_name)
     size = 0
     if os.path.isdir(dir_name):
         for root, dirs, files in tqdm(os.walk(dir_name)):
@@ -221,49 +182,95 @@ def check_size(dir_name=None, unit=None):
     return size
 
 
-def url_not_exist(dir_name=None):
+def ls(dir_name) -> List[str]:
     """
-    dir_name 下的文件夹 对应的下载链接是否存在
+    列出文件夹下的文件
 
-    :return:
+    :param dir_name: 文件夹名
+
+    :return: 文件列表
     """
-    if dir_name is None:
-        dir_name = input('输入文件夹名: ')
-
-    url_set = None
-    if dir_name == 'wangyi':
-        url_set = wangyi.video_urls
-    elif dir_name == 'wangyi_pub':
-        url_set = wangyi_pub.video_urls
-
-    dir_name = os.path.join(os.getcwd(), dir_name)
-    for name in os.listdir(dir_name):
-        if name not in url_set:
-            name = os.path.join(dir_name, name)
-            if os.path.isdir(name):
-                shutil.rmtree(name)
+    paths = [os.path.join(os.getcwd(), dir_name, name) for name in os.listdir(dir_name)]
+    print('\n'.join(paths))
+    return paths
 
 
-def check_help(commands):
-    print('命令列表: ', ', '.join(commands.keys()))
+def check_help() -> None:
+    """
+    打印命令列表
+    """
+    print('命令列表: ', ', '.join(COMMANDS.keys()))
+
+
+COMMANDS = {'help': check_help,
+            'duration': check_duration,
+            'num_files': check_num_files,
+            'dfs_num_files': check_dfs_num_files,
+            'del': check_deletes,
+            'size': check_size,
+            'ls': ls,
+            'print': print
+            }
+
+
+def run_command(source_command: str, args=None):
+    """
+    运行一个命令, 输入命令的格式为: 命令名 参数1 参数2... 参数n
+
+    :param source_command: 命令
+
+    :param args: 命令参数, 可以为 list 或非 list 参数，最终一定封包为 list 对象
+
+    :return: 命令的返回值
+    """
+    command, *extra_args = source_command.split()
+
+    if args is None:
+        args = extra_args
+    else:
+        if len(extra_args):
+            # 当输入来自上一个命令的输出时， 当前命令不应该包含输入
+            raise RuntimeError(f'输入来自于上一个命令的输出{args}, 当前命令 {source_command} 不能包含输入参数')
+
+    if not isinstance(args, list):
+        args = [args]
+
+    if command in COMMANDS.keys():
+        return COMMANDS[command](*args)
+    else:
+        # command 不存在的情况下将source_command解析为一个输入命令
+        return source_command
+
+
+def run_chain_commands(commands: str):
+    """
+    运行命令, 可以链式运行多个命令，每个命令用空格隔开
+
+    上一个命令的输出为下一个命令的输入
+
+    :param commands: 一行输入的命令
+    """
+    commands = commands.split('>')
+    ret = None
+    for command in commands:
+        command = command.strip()
+        ret = run_command(command, ret)
+
+    return ret
+
+
+def main():
+    num_command = 0
+    while True:
+        command = input(f'command<{num_command}>: ').strip()
+        num_command += 1
+        if command == 'exit':
+            break
+        elif command == '':
+            continue
+        else:
+            run_chain_commands(command)
 
 
 if __name__ == '__main__':
-    inputs = input('command: ')
-    COMMANDS = {'help': check_help,
-                'duration': check_duration,
-                'num_files': check_num_files,
-                'dfs_num_files': check_dfs_num_files,
-                'del': check_deletes,
-                'del_n_complete': delete_not_complete_dirs,
-                'size': check_size,
-                'del_n_exist': url_not_exist,
-                }
-
-    if inputs in COMMANDS.keys():
-        if inputs == 'help':
-            check_help(COMMANDS)
-        else:
-            COMMANDS[inputs]()
-    else:
-        print('输入错误')
+    main()

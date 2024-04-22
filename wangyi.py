@@ -74,7 +74,6 @@ def main():
             for tab_type in TAB_TYPES:
                 url = make_wy_api_url(tab_type, USER_IDS, size=size)
                 response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
-                response = requests.get(url, headers=setting.HEADERS, timeout=50, stream=True)
                 datas = parse_wy_api_response(response.text)
 
                 try:

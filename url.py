@@ -22,8 +22,6 @@ class UrlSet:
             raise TypeError("Invalid type for init_url_data")
 
         self.save_path = save_path
-        self.file = open(save_path, 'a', encoding='utf-8')
-        atexit.register(self.file.close)
         self.lock = threading.Lock()
 
     def add(self, url: str):

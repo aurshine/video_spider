@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional
+from typing import List, Optional, Generator
 
 import requests
 from urllib.parse import urljoin
@@ -58,27 +58,25 @@ def request_text(url: str, headers=None, **kwargs) -> str:
     return response.text
 
 
-def parse_m3u8(url: str) -> List[str]:
+def parse_m3u8(url: str) -> Generator:
     """
     解析m3u8文件，返回ts文件列表
 
     :param url: m3u8文件url
 
-    :return: 返回ts文件列表
+    :return: ts文件生成器
     """
     # 解析m3u8文件
     text = request_text(url)
     ts_files = []
     for line in text.split('\n'):
         if line.find('.ts') != -1:
-            ts_files.append(urljoin(url, line))
+            yield urljoin(url, line)
         elif line.find('.m3u8') != -1:
-            ts_files += parse_m3u8(urljoin(url, line))
-
-    return ts_files
+            yield from parse_m3u8(urljoin(url, line))
 
 
-def download_ts_files(ts_files: List[str], save_path: str):
+def download_ts_files(ts_files: Generator, save_path: str):
     """
     下载ts文件列表
 
@@ -91,10 +89,10 @@ def download_ts_files(ts_files: List[str], save_path: str):
     for i, ts_file in enumerate(ts_files):
         with open(os.path.join(save_path, f'{i: 04d}.ts'), 'wb') as f:
             f.write(request_video(ts_file))
-            print(f'Downloaded {i+1}/{len(ts_files)}')
+            print(f'Downloaded {i+1}')
 
 
-def merge_download_ts_files(ts_files: List[str], save_path: str, cover: bool = False):
+def merge_download_ts_files(ts_files: Generator, save_path: str, cover: bool = False):
     """
     合并下载ts文件
 
@@ -142,8 +140,8 @@ def download_m3u8_video(m3u8_url: str, save_path: str, cover: bool = False):
     :param cover: 当文件存在时是否覆盖, 默认为 False
     """
 
-    ts_files = parse_m3u8(m3u8_url)
-    merge_download_ts_files(ts_files, save_path, cover=cover)
+    ts_files_generator = parse_m3u8(m3u8_url)
+    merge_download_ts_files(ts_files_generator, save_path, cover=cover)
 
 
 def auto_download_video(video_url: str, save_path: str, cover: bool = False):

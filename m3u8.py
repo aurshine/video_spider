@@ -39,15 +39,21 @@ def video_duration(video_path, video_capture=None) -> float:
 
 
 @delay.Delay(0, 2)
-def request_video(url: str, **kwargs) -> bytes:
-    response = requests.get(url, headers=setting.HEADERS, **kwargs)
+def request_video(url: str, headers=None, **kwargs) -> bytes:
+    if headers is None:
+        headers = setting.HEADERS
+
+    response = requests.get(url, headers=headers, **kwargs)
     response.raise_for_status()
     return response.content
 
 
 @delay.Delay(0, 2)
-def request_text(url: str, **kwargs) -> str:
-    response = requests.get(url, headers=setting.HEADERS, **kwargs)
+def request_text(url: str, headers=None, **kwargs) -> str:
+    if headers is None:
+        headers = setting.HEADERS
+
+    response = requests.get(url, headers=headers, **kwargs)
     response.raise_for_status()
     return response.text
 
@@ -61,15 +67,12 @@ def parse_m3u8(url: str) -> List[str]:
     :return: 返回ts文件列表
     """
     # 解析m3u8文件
-    response = requests.get(url, headers=setting.HEADERS)
-    delay.random_delay(0, 2)
-    response.raise_for_status()
-
+    text = request_text(url)
     ts_files = []
-    for line in response.text.split('\n'):
-        if line.endswith('.ts'):
+    for line in text.split('\n'):
+        if line.find('.ts') != -1:
             ts_files.append(urljoin(url, line))
-        elif line.endswith('.m3u8'):
+        elif line.find('.m3u8') != -1:
             ts_files += parse_m3u8(urljoin(url, line))
 
     return ts_files

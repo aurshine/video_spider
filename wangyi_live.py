@@ -44,7 +44,10 @@ def download_wangyi_live(data: dict, delay_min: int = 2, delay_max: int = 5):
         return
 
     print(f'开始下载 {room_name} {room_id}')
-    m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
+    for ts_file in m3u8.parse_m3u8(video_url):
+        m3u8.download_ts_files(ts_file, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id))
+
+    # m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
     video_urls.add(room_id)
     delay.random_delay(delay_min, delay_max)
     print(f'{room_name} 直播下载完成')

@@ -68,7 +68,6 @@ def parse_m3u8(url: str) -> Generator:
     """
     # 解析m3u8文件
     text = request_text(url)
-    ts_files = []
     for line in text.split('\n'):
         if line.find('.ts') != -1:
             yield urljoin(url, line)
@@ -87,7 +86,7 @@ def download_ts_files(ts_files: Generator, save_path: str):
     os.makedirs(save_path, exist_ok=True)
 
     for i, ts_file in enumerate(ts_files):
-        with open(os.path.join(save_path, f'{i: 04d}.ts'), 'wb') as f:
+        with open(os.path.join(save_path, f'({i: 04d}).ts'), 'wb') as f:
             f.write(request_video(ts_file))
             print(f'Downloaded {i+1}')
 

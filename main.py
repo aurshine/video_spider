@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 import m3u8
 import setting
+import delay
 
 
 def main():
@@ -12,4 +13,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    print(delay.get_time(30))

@@ -27,3 +27,21 @@ class Delay:
             return func(*args, **kwargs)
 
         return wrapper
+
+
+def get_time(length: int = None):
+    """
+    获取长度为length的当前时间戳
+
+    :param length:
+
+    :return:
+    """
+    t = str(time.time_ns())
+    if length is not None:
+        if len(t) > length:
+            t = t[:length]
+        if len(t) < length:
+            t = t.ljust(length, '0')
+
+    return t

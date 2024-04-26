@@ -153,12 +153,11 @@ def auto_download_video(video_url: str, save_path: str, cover: bool = False):
 
     :param cover: 当前文件存在时是否覆盖, 默认为 False
     """
-    if video_url.endswith('.mp4'):
-        return download_mp4_video(video_url, save_path, cover=cover)
-    elif video_url.endswith('.m3u8'):
+
+    if video_url.endswith('.m3u8'):
         return download_m3u8_video(video_url, save_path, cover=cover)
     else:
-        print(f'不支持除 .mp4, .m3u8 以外的视频格式 {video_url}')
+        return download_mp4_video(video_url, save_path, cover=cover)
 
 
 def video_info(video_path) -> Optional[dict]:

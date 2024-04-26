@@ -1,27 +1,21 @@
 import os
 
-# 央视频文件夹地址
-YANG_VIDEO_PATH = os.path.join(os.getcwd(), 'yangshiping')
-
 # 凤凰网视频文件夹地址
 IFENG_VIDEO_PATH = os.path.join(os.getcwd(), 'ifeng')
 
 # 网易视频文件夹地址
 WANGYI_VIDEO_PATH = os.path.join(os.getcwd(), 'wangyi')
 
-# 网易公开课视频文件夹地址
-WANGYI_PUB_VIDEO_PATH = os.path.join(os.getcwd(), 'wangyi_pub')
-
 # 网易直播视频文件夹地址
 WANGYI_LIVE_VIDEO_PATH = os.path.join(os.getcwd(), 'wangyi_live')
 
-# 一席演讲视频文件夹地址
-YIXI_VIDEO_PATH = os.path.join(os.getcwd(), 'yixi')
+# 北京卫视视频文件夹地址
+BRTV_VIDEO_PATH = os.path.join(os.getcwd(), 'brtv')
 
 # 洛谷文件夹
 LUOGU_PATH = os.path.join(os.getcwd(), 'luogu')
 
-for path in [YANG_VIDEO_PATH, IFENG_VIDEO_PATH, WANGYI_PUB_VIDEO_PATH, WANGYI_LIVE_VIDEO_PATH, YIXI_VIDEO_PATH, LUOGU_PATH]:
+for path in [IFENG_VIDEO_PATH, WANGYI_LIVE_VIDEO_PATH, LUOGU_PATH, BRTV_VIDEO_PATH]:
     if not os.path.exists(path):
         os.makedirs(path)
 

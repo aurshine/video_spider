@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from tqdm import tqdm
 
 import m3u8
@@ -13,4 +14,6 @@ def main():
 
 
 if __name__ == '__main__':
-    print(delay.get_time(30))
+    json_obj = m3u8.request_text('https://app.api.btime.com/video/play', params={'_': delay.get_time(13), 'id': '23dlbq3u4glmu2gpokto0jhlqmj'})
+    video_url = json.loads(json_obj)['data']['video_stream'][0]['stream_url']
+    m3u8.download_mp4_video(video_url, 'a.mp4', cover=True)

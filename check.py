@@ -7,7 +7,6 @@ from tqdm import tqdm
 import m3u8
 
 
-
 def check_paths_exist(dir_path, other_paths: list) -> list:
     """
     检查 dir_path 下是否存在 other_paths 中所有的路径
@@ -228,7 +227,7 @@ def dir_names(paths: List[str]):
     return [os.path.dirname(path) for path in paths if os.path.exists(path)]
 
 
-def check_help() -> None:
+def check_help(args) -> None:
     """
     打印命令列表
     """

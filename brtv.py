@@ -115,3 +115,7 @@ def download_guide(guide_name: str):
 def main():
     for guide_name in get_all_btv_guides():
         download_guide(guide_name)
+
+
+if __name__ == '__main__':
+    main()

@@ -2,6 +2,7 @@ import os
 import json
 from typing import List
 import traceback
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import delay
@@ -44,10 +45,10 @@ def download_wangyi_live(data: dict, delay_min: int = 2, delay_max: int = 5):
         return
 
     print(f'开始下载 {room_name} {room_id}')
-    for ts_file in m3u8.parse_m3u8(video_url):
-        m3u8.download_ts_files(ts_file, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id))
+    # for ts_file in m3u8.parse_m3u8(video_url):
+    #     m3u8.download_ts_files(ts_file, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id))
 
-    # m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
+    m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
     video_urls.add(room_id)
     delay.random_delay(delay_min, delay_max)
     print(f'{room_name} 直播下载完成')
@@ -55,13 +56,19 @@ def download_wangyi_live(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 def main():
     for i in range(1, 240):
+        if i in video_urls:
+            print(f'第 {i} 页直播间已下载')
+            continue
         url = make_wy_live_api_url(i)
         text = m3u8.request_text(url, timeout=50, stream=True)
         datas = parse_wy_live_api_response(text)
 
         try:
-            for data in datas:
-                download_wangyi_live(data, 1, 2)
+            with Pool(max_workers=10) as pool:
+                for data in datas:
+                    pool.submit(download_wangyi_live, data, 1, 2)
+            print(f'第 {i} 页直播间下载完成')
+            video_urls.add(str(i))
         except Exception as e:
             traceback.print_exc()
             print(f'下载直播间失败: {e}')

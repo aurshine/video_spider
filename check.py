@@ -227,26 +227,23 @@ def dir_names(paths: List[str]):
     return [os.path.dirname(path) for path in paths if os.path.exists(path)]
 
 
-def check_help(args) -> None:
+def check_print(value):
+    """
+    打印一个值
+
+    :param value: 值
+    """
+    if isinstance(value, list):
+        value = '\n'.join(value) + f"\n\ntotal = {len(value)}"
+    print(value)
+    return value
+
+
+def check_help(args=None) -> None:
     """
     打印命令列表
     """
-    print('命令列表: ', ', '.join(COMMANDS.keys()))
-
-
-COMMANDS = {'help': check_help,
-            'duration': check_duration,
-            'num_files': check_num_files,
-            'dfs_num_files': check_dfs_num_files,
-            'del': check_deletes,
-            'size': check_size,
-            'ls': ls,
-            'is_error': video_is_error,
-            'dir_names': dir_names,
-            'len': len,
-            'print': print,
-            'split': str.split,
-            }
+    print('命令列表: ', '\n'.join(COMMANDS.keys()))
 
 
 def run_command(command: str, args):
@@ -273,6 +270,8 @@ def run_chain_commands(commands: str):
     上一个命令的输出为下一个命令的输入
 
     :param commands: 一行输入的命令
+
+    :return: 命令的返回值
     """
     commands = commands.split('>')
     ret = None
@@ -283,17 +282,52 @@ def run_chain_commands(commands: str):
     return ret
 
 
+def get_history_returns(index=-1):
+    """
+    获取历史命令的返回值
+
+    :param index: 历史命令的索引
+
+    :return:
+    """
+    return HISTORY_RETURNS[int(index)]
+
+
+# 历史命令返回值
+HISTORY_RETURNS = []
+
+COMMANDS = {'help': check_help,
+            'duration': check_duration,
+            'num_files': check_num_files,
+            'dfs_num_files': check_dfs_num_files,
+            'del': check_deletes,
+            'size': check_size,
+            'ls': ls,
+            'is_error': video_is_error,
+            'dir_names': dir_names,
+            'len': len,
+            'print': check_print,
+            'split': str.split,
+            'history': get_history_returns,
+            'cwd': os.getcwd,
+            }
+
+
 def main():
     num_command = 0
     while True:
         command = input(f'command<{num_command}>: ').strip()
         num_command += 1
+
+        ret = None
         if command == 'exit':
             break
         elif command == '':
-            continue
+            pass
         else:
-            run_chain_commands(command)
+            ret = run_chain_commands(command)
+
+        HISTORY_RETURNS.append(ret)
 
 
 if __name__ == '__main__':

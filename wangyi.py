@@ -64,7 +64,7 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 def main():
     with Pool(max_workers=10) as pool:
-        num_page, size = 20, 30
+        num_page, size = 30, 30
         # 下载量 = len(TAB_TYPES) * num_page * size
 
         for i in range(num_page):

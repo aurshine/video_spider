@@ -42,13 +42,13 @@ def random_problem(difficulty: Union[int, tuple] = None, tag=None, keyword=None)
     page = (get_problem_count(difficulty, tag, keyword) + 49) // 50
 
     problem = random.choice(get_problem_list(random.randint(1, page), difficulty, tag, keyword))
-    return f'https://www.luogu.com.cn/problem/{problem["pid"]}', problem['title']
+    return f'https://www.luogu.com.cn/problem/{problem["pid"]}', problem['title'], difficulty
 
 
 def main():
-    url, title = random_problem(difficulty=(3, 5), tag=None, keyword=None)
+    url, title, difficulty = random_problem(difficulty=(3, 5), tag=None, keyword=None)
 
-    print(f'title: {title}\n url: {url}')
+    print(f'title: {title}\n url: {url}\n difficulty: {difficulty}')
 
 
 if __name__ == '__main__':

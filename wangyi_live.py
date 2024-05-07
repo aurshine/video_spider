@@ -2,7 +2,6 @@ import os
 import json
 from typing import List
 import traceback
-from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import delay
@@ -64,9 +63,8 @@ def main():
         datas = parse_wy_live_api_response(text)
 
         try:
-            with Pool(max_workers=10) as pool:
-                for data in datas:
-                    pool.submit(download_wangyi_live, data, 1, 2)
+            for data in datas:
+                download_wangyi_live( data, 1, 2)
             print(f'第 {i} 页直播间下载完成')
             video_urls.add(str(i))
         except Exception as e:

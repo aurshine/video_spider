@@ -42,7 +42,7 @@ def download_br_tv_video(gid: str):
     video_url = data['data']['video_stream'][0]['stream_url']
     m3u8.download_video(video_url, os.path.join(setting.BRTV_VIDEO_PATH, gid), _video_info=data, cover=True)
     video_urls.add(gid)
-    delay.random_delay(1, 3)
+    delay.random_delay(3, 8)
     print(f'视频 {gid} 下载完成')
 
 
@@ -79,7 +79,7 @@ def get_guide_programs(guide_name: str) -> list:
     url = (f'https://pc.api.btime.com/btimeweb/infoFlow?'
            f'list_id={get_programme_id(guide_name)}'
            f'&refresh=1'
-           f'&count=10000'
+           f'&count=1000'
            f'&expands=pageinfo'
            f'&_={delay.get_time(13)}')
     data = json.loads(m3u8.request_text(url))['data']['list']
@@ -91,7 +91,6 @@ def get_all_btv_guides() -> list:
     获取 北京卫视 所有栏目
     :return:
     """
-    pattern = r'"open_url":"(.*?)"'
     pattern = r'open_url":"https:\\/\\/www.btime.com\\/btv\\/(.*?)"'
     url = 'https://www.brtn.cn/btvprogram'
     html = m3u8.request_text(url)

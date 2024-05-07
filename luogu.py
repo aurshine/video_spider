@@ -46,7 +46,7 @@ def random_problem(difficulty: Union[int, tuple] = None, tag=None, keyword=None)
 
 
 def main():
-    url, title, difficulty = random_problem(difficulty=(3, 5), tag=None, keyword=None)
+    url, title, difficulty = random_problem(difficulty=(4, 5), tag=None, keyword=None)
 
     print(f'title: {title}\n url: {url}\n difficulty: {difficulty}')
 

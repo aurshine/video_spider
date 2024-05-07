@@ -1,6 +1,7 @@
 import os
 from typing import List, Optional, Generator
 
+from tqdm import tqdm
 import requests
 from urllib.parse import urljoin
 import cv2
@@ -106,7 +107,7 @@ def merge_download_ts_files(ts_files: Generator, save_path: str, cover: bool = F
         return
 
     with open(save_path, 'ab') as f:
-        for ts_file in ts_files:
+        for ts_file in tqdm(ts_files):
             f.write(request_video(ts_file))
 
 

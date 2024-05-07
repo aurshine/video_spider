@@ -63,7 +63,6 @@ def download_wangyi_video(data: dict, delay_min: int = 2, delay_max: int = 5):
 
 
 def main():
-    with Pool(max_workers=10) as pool:
         num_page, size = 30, 30
         # 下载量 = len(TAB_TYPES) * num_page * size
 
@@ -76,7 +75,7 @@ def main():
 
                 try:
                     for data in datas:
-                        pool.submit(download_wangyi_video, data, 1, 2)
+                        download_wangyi_video(data, 1, 2)
 
                 except Exception as e:
                     traceback.print_exc()

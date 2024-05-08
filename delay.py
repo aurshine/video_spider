@@ -10,6 +10,7 @@ def random_delay(minimum, maximum):
     """
     随机延迟
     """
+    assert 0 <= minimum <= maximum, '应当满足 0 <= minimum <= maximum'
     delay(random.uniform(minimum, maximum))
 
 

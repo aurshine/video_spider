@@ -56,7 +56,7 @@ def download_br_tv_video(gid: str):
     video_url = data['data']['video_stream'][0]['stream_url']
     m3u8.download_video(video_url, os.path.join(setting.BRTV_VIDEO_PATH, gid), _video_info=data, cover=True)
     video_urls.add(gid)
-    delay.random_delay(3, 8)
+    delay.random_delay(1, 3)
     print(f'视频 {gid} 下载完成')
 
 

@@ -40,13 +40,13 @@ def video_duration(video_path, video_capture=None) -> float:
     return frame_count / fps
 
 
-def request_video(url: str, headers=None, min_delay: float = 0, max_delay: float = 2, **kwargs) -> bytes:
+def request_video(url: str, headers=None, stream=True, min_delay: float = 0, max_delay: float = 2, **kwargs) -> bytes:
     delay.random_delay(min_delay, max_delay)
 
     if headers is None:
         headers = setting.HEADERS
 
-    response = requests.get(url, headers=headers, **kwargs)
+    response = requests.get(url, headers=headers, stream=stream, **kwargs)
     response.raise_for_status()
     return response.content
 
@@ -95,8 +95,7 @@ def download_ts_files(ts_files: List[str], save_path: str):
     exp = math.exp(len(ts_files))
     for i, ts_file in enumerate(ts_files):
         with open(os.path.join(save_path, f'({i: 04d}).ts'), 'wb') as f:
-            # 延时根据文件列表长度减少, 范围在 (0, 1) 之间伸缩
-            f.write(request_video(ts_file, min_delay=0, max_delay=2 - 2 * exp / (1 + exp)))
+            f.write(request_video(ts_file, min_delay=0, max_delay=0.2))
             print(f'Downloaded {i+1}')
 
 

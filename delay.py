@@ -46,3 +46,16 @@ def get_time(length: int = None):
             t = t.ljust(length, '0')
 
     return t
+
+
+def get_ramdom_num(length: int = 1):
+    """
+    获取长度为 length的随机数字字符串
+
+    :param length: 数字串的长度
+
+    :return:
+    """
+    assert length > 0, '应当满足 length > 0'
+
+    return ''.join(str(random.randint(0, 9)) for _ in range(length))

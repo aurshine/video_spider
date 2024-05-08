@@ -12,16 +12,30 @@ DOWNLOAD_URL_PATH = os.path.join(setting.BRTV_VIDEO_PATH, 'download_url.txt')
 video_urls = UrlSet(DOWNLOAD_URL_PATH, DOWNLOAD_URL_PATH)
 
 
+def make_callback() -> str:
+    """
+    构造 brtv 请求里的 callback参数
+
+    :return:
+    """
+
+    return 'jQuery3600' + delay.get_ramdom_num(16) + '_' + delay.get_time(13)
+
+
 def make_br_tv_api(gid: str) -> str:
     """
     生成 北京卫视 视频播放api
 
     :param gid: 视频id
     """
-    return f'https://app.api.btime.com/video/play?id={gid}&_={delay.get_time(13)}'
+    return (f'https://app.api.btime.com/video/play?'
+            f'callback={make_callback()}'
+            f'&id={gid}'
+            f'&_={delay.get_time(13)}')
 
 
 def parse_br_tv_api_response(data: str) -> dict:
+    data = data[data.find('(') + 1: -1]
     return json.loads(data)
 
 
@@ -77,12 +91,16 @@ def get_guide_programs(guide_name: str) -> list:
     :return: 每期节目的 gid 列表
     """
     url = (f'https://pc.api.btime.com/btimeweb/infoFlow?'
-           f'list_id={get_programme_id(guide_name)}'
+           f'callback={make_callback()}'
+           f'&list_id={get_programme_id(guide_name)}'
            f'&refresh=1'
            f'&count=1000'
            f'&expands=pageinfo'
            f'&_={delay.get_time(13)}')
-    data = json.loads(m3u8.request_text(url))['data']['list']
+
+    res = m3u8.request_text(url)
+    res = res[res.find('(') + 1: -1]
+    data = json.loads(res)['data']['list']
     return [program['gid'] for program in data]
 
 

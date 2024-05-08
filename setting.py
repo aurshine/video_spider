@@ -1,9 +1,6 @@
 import os
 
 PATHS = []
-# 凤凰网视频文件夹地址
-IFENG_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'ifeng')
-PATHS.append(IFENG_VIDEO_PATH)
 
 # 网易视频文件夹地址
 WANGYI_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'wangyi')

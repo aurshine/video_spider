@@ -20,7 +20,4 @@ def delay_test():
 
 
 if __name__ == '__main__':
-    with Pool(max_workers=5) as pool:
-        for i in range(10):
-            pool.submit(delay_test)
-    print('over')
+    print(json.loads('[1, 2, 3]'))

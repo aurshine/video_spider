@@ -52,19 +52,9 @@ def parse_av_video_page(html: str) -> Tuple[str, dict]:
 
     :return: 视频url 以及 视频信息
     """
-    begin_index = html.find('{', html.find('"ksPlayJson"'))
-    end_index = begin_index + 1
+    match_str = m3u8.match(html[html.find('"ksPlayJson"'):], '{', '}').replace(r'\"', '"')
 
-    stk = 1  # 维护存储 {}匹配的栈
-    while stk != 0:
-        if html[end_index] == '{':
-            stk += 1
-        elif html[end_index] == '}':
-            stk -= 1
-
-        end_index += 1
-
-    json_str = json.loads(html[begin_index:end_index].replace(r'\"', '"'))
+    json_str = json.loads(match_str)
     return json_str['adaptationSet'][0]['representation'][0]['url'], json_str
 
 
@@ -99,7 +89,7 @@ def download_all_videos(uid :str):
         if f'{uid}-{page}' in video_urls:
             print(f'uid:{uid} 第{page}页视频已经下载完成')
             continue
-            
+
         url = make_up_index_url(uid, page)
         html = m3u8.request_text(url)
         av_ids = parse_page_with_av(html)

@@ -1,6 +1,7 @@
 import os
 import re
 import json
+from typing import List
 
 import m3u8
 import setting
@@ -60,48 +61,44 @@ def download_br_tv_video(gid: str):
     print(f'视频 {gid} 下载完成')
 
 
-def get_programme_id(guide_name: str) -> str:
+def get_programme_id(guide_name: str) -> List[str]:
     """
     根据栏目名称获取栏目id
 
     :param guide_name: 栏目名称
 
-    :return: 栏目id
+    :return: 所有年份的栏目id
     """
     url = f'https://www.btime.com/btv/{guide_name}'
     html = m3u8.request_text(url)
-    flag_str = '"listId":'
-    begin_index = html.find(flag_str)
 
-    # 提取"listId": "programme_id" -> programme_id
-    if begin_index != -1:
-        begin_index = html.find('"', begin_index + len(flag_str)) + 1
-        if begin_index != 0:
-            end_index = html.find('"', begin_index)
-            return html[begin_index:end_index]
-    raise RuntimeError(f'未找到栏目 {guide_name} 的 id')
+    years = json.loads(m3u8.match(html[html.find('"list"'):], '[', ']'))
+
+    return [year['listId'] for year in years]
 
 
-def get_guide_programs(guide_name: str) -> list:
+def get_guide_programs(guide_name: str):
     """
     获取 北京卫视 一个栏目的节目表gid
 
     即一个栏目每一期节目的gid
 
-    :return: 每期节目的 gid 列表
+    :return: 所有年份每期节目的 gid
     """
-    url = (f'https://pc.api.btime.com/btimeweb/infoFlow?'
-           f'callback={make_callback()}'
-           f'&list_id={get_programme_id(guide_name)}'
-           f'&refresh=1'
-           f'&count=1000'
-           f'&expands=pageinfo'
-           f'&_={delay.get_time(13)}')
+    for program_id in get_programme_id(guide_name):
+        url = (f'https://pc.api.btime.com/btimeweb/infoFlow?'
+               f'callback={make_callback()}'
+               f'&list_id={program_id}'
+               f'&refresh=1'
+               f'&count=1000'
+               f'&expands=pageinfo'
+               f'&_={delay.get_time(13)}')
 
-    res = m3u8.request_text(url)
-    res = res[res.find('(') + 1: -1]
-    data = json.loads(res)['data']['list']
-    return [program['gid'] for program in data]
+        res = m3u8.request_text(url)
+        res = res[res.find('(') + 1: -1]
+        data = json.loads(res)['data']['list']
+        for program in data:
+            yield program['gid']
 
 
 def get_all_btv_guides() -> list:

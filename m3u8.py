@@ -359,3 +359,33 @@ def video_is_ok(video_path):
         return False
     except ffmpeg.Error:
         return False
+
+
+def match(text: str, pattern_l: str, patter_r: str) -> str:
+    """
+    匹配左右两边的字符串
+
+    :param text: 原始文本
+
+    :param pattern_l: 左匹配
+
+    :param patter_r: 右匹配
+
+    :return: 匹配结果
+    """
+    cnt, first = 0, -1
+    for i, c in enumerate(text):
+        if first != -1 and cnt == 0:
+            return text[first: i]
+        elif cnt < 0:
+            raise RuntimeError('无法完成完整匹配, 请检查左右匹配是否配对')
+
+        if c == pattern_l:
+            if first == -1:
+                first = i
+            cnt += 1
+
+        elif c == patter_r:
+            cnt -= 1
+
+    raise RuntimeError('无法完成完整匹配, 请检查左右匹配是否配对')

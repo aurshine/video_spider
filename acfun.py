@@ -87,7 +87,7 @@ def download_all_videos(uid: str):
     """
     page = 0
     while True:
-        with Pool(max_workers=5) as pool:
+        with Pool(max_workers=10) as pool:
             page += 1
             if f'{uid}-{page}' in video_urls:
                 print(f'uid:{uid} 第{page}页视频已经下载')

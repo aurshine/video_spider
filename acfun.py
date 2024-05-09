@@ -1,8 +1,9 @@
 import os
 import re
+import gc
 import json
 from typing import Tuple
-from concurrent.futures import ProcessPoolExecutor as Pool
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import delay
@@ -104,7 +105,8 @@ def download_all_videos(uid: str):
             pool.map(download_video, av_ids, chunksize=5)
 
         video_urls.add(f'{uid}-{page}')
+        gc.collect()
 
 
 if __name__ == '__main__':
-    download_all_videos('1493087')
+    download_all_videos(input('请输入up主的uid: '))

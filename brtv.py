@@ -1,8 +1,9 @@
 import os
 import re
+import gc
 import json
 from typing import List
-from concurrent.futures import ProcessPoolExecutor as Pool
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import setting
@@ -129,6 +130,7 @@ def download_guide(guide_name: str):
         pool.map(download_br_tv_video, get_guide_programs(guide_name), chunksize=5)
 
     video_urls.add(guide_name)
+    gc.collect()
 
 
 def main():

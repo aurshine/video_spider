@@ -1,6 +1,6 @@
 import os
 import shutil
-from typing import List, Union
+from typing import List, Union, Tuple, Optional
 
 from tqdm import tqdm
 
@@ -149,7 +149,7 @@ def check_deletes(dir_names: Union[str, List[str]]) -> None:
         check_delete(dir_name)
 
 
-def check_size(dir_name, unit='g') -> float:
+def check_size(dir_name, unit: Optional[str] = 'g') -> Tuple[float, int]:
     """
     检查 文件夹的大小
 
@@ -161,11 +161,15 @@ def check_size(dir_name, unit='g') -> float:
     """
     dir_name = os.path.join(os.getcwd(), dir_name)
 
-    size = 0
+    size, cnt = 0, 0
     if os.path.isdir(dir_name):
-        for root, dirs, files in tqdm(os.walk(dir_name)):
-            size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
+        for sub_path in os.listdir(dir_name):
+            _size, _cnt = check_size(os.path.join(dir_name, sub_path), None)
+
+            size += _size
+            cnt += _cnt
     else:
+        cnt = 1
         size = os.path.getsize(dir_name)
 
     if unit == 'k':
@@ -177,8 +181,9 @@ def check_size(dir_name, unit='g') -> float:
     elif unit == 't':
         size /= 1024 ** 4
 
-    print(f'{dir_name} 大小为 {size: .2f}{unit}')
-    return size
+    if unit:
+        print(f'{dir_name} 大小为 {size: .2f}{unit}  共有{cnt} 个文件)')
+    return size, cnt
 
 
 def ls(dir_name) -> List[str]:

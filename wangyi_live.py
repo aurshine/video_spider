@@ -1,7 +1,8 @@
+import gc
 import os
 import json
 from typing import List
-from concurrent.futures import ProcessPoolExecutor as Pool
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import delay
@@ -66,6 +67,7 @@ def main():
 
         print(f'第 {i} 页直播间下载完成')
         video_urls.add(str(i))
+        gc.collect()
 
 
 if __name__ == '__main__':

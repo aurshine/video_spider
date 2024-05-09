@@ -1,5 +1,4 @@
 import os
-import math
 from typing import List, Optional, Iterator, Union
 
 from tqdm import tqdm
@@ -9,7 +8,6 @@ import cv2
 import ffmpeg
 
 import setting
-import delay
 
 
 def video_duration(video_path, video_capture=None) -> float:
@@ -40,7 +38,7 @@ def video_duration(video_path, video_capture=None) -> float:
     return frame_count / fps
 
 
-def request_video(url: str, headers=None, min_delay: float = 0, max_delay: float = 1, **kwargs) -> bytes:
+def request_video(url: str, headers=None, **kwargs) -> bytes:
     """
     请求视频文件字节
 
@@ -48,14 +46,8 @@ def request_video(url: str, headers=None, min_delay: float = 0, max_delay: float
 
     :param headers:  请求头
 
-    :param min_delay:  最小延迟
-
-    :param max_delay:  最大延迟
-
     :param kwargs:  其他参数
     """
-    delay.random_delay(min_delay, max_delay)
-
     if headers is None:
         headers = setting.HEADERS
 
@@ -68,24 +60,18 @@ def request_video(url: str, headers=None, min_delay: float = 0, max_delay: float
         return b''
 
 
-def request_video_stream(url: str, headers=None, min_delay: float = 0, max_delay: float = 1, **kwargs) -> Iterator[bytes]:
+def request_video_stream(url: str, headers=None, **kwargs) -> Iterator[bytes]:
     """
     请求视频文件字节流流
 
-    :param url:  视频文件url
+    :param url: 视频文件url
 
-    :param headers:  请求头
+    :param headers: 请求头
 
-    :param min_delay:   最小延迟
-
-    :param max_delay:   最大延迟
-
-    :param kwargs:    其他参数
+    :param kwargs: 其他参数
 
     :return: 视频文件字节流
     """
-    delay.random_delay(min_delay, max_delay)
-
     if headers is None:
         headers = setting.HEADERS
 
@@ -98,9 +84,7 @@ def request_video_stream(url: str, headers=None, min_delay: float = 0, max_delay
             print(f'请求 {url} 失败')
 
 
-def request_text(url: str, headers=None, min_delay: int = 0, max_delay: int = 1, **kwargs) -> str:
-    delay.random_delay(min_delay, max_delay)
-
+def request_text(url: str, headers=None, **kwargs) -> str:
     if headers is None:
         headers = setting.HEADERS
 
@@ -164,7 +148,7 @@ def download_ts_files(ts_files: List[str], save_path: str):
     os.makedirs(save_path, exist_ok=True)
 
     for i, ts_file in enumerate(ts_files):
-        _download_video(request_video(ts_file, min_delay=0, max_delay=0.2), os.path.join(save_path, f'({i: 04d}).ts'))
+        _download_video(request_video(ts_file), os.path.join(save_path, f'({i: 04d}).ts'))
         print(f'Downloaded {i+1}')
 
 

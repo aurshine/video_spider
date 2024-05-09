@@ -1,7 +1,6 @@
 import os
 from typing import Union
-import threading
-import atexit
+from multiprocessing import Lock
 
 
 class UrlSet:
@@ -22,17 +21,14 @@ class UrlSet:
             raise TypeError("Invalid type for init_url_data")
 
         self.save_path = save_path
-        self.lock = threading.Lock()
+        self.lock = Lock()
 
     def add(self, url: str):
-        self.lock.acquire()
-        try:
+        with self.lock:
             if url not in self.urls:
                 self.urls.add(url)
                 with open(self.save_path, 'a', encoding='utf-8') as f:
                     f.write(url + '\n')
-        finally:
-            self.lock.release()
 
     def __contains__(self, item: str):
         return str(item).strip() in self.urls

@@ -2,6 +2,7 @@ import os
 import re
 import json
 from typing import Tuple
+from concurrent.futures import ProcessPoolExecutor as Pool
 
 import m3u8
 import delay
@@ -66,7 +67,7 @@ def download_video(av_id: str):
     """
     av_id = str(av_id)
     if av_id in video_urls:
-        print(f'{av_id} 视频已经下载完成')
+        print(f'{av_id} 视频已经下载')
         return
 
     print(f'开始下载 {av_id} 视频')
@@ -76,7 +77,8 @@ def download_video(av_id: str):
     m3u8.download_video(video_url, os.path.join(setting.ACFUN_VIDEO_PATH, av_id), _video_info=video_datas, cover=True)
 
     video_urls.add(av_id)
-    delay.random_delay(1, 3)
+    delay.random_delay(1, 2)
+    print(f'{av_id} 视频下载完成')
 
 
 def download_all_videos(uid :str):
@@ -85,24 +87,25 @@ def download_all_videos(uid :str):
     """
     page = 0
     while True:
-        page += 1
-        if f'{uid}-{page}' in video_urls:
-            print(f'uid:{uid} 第{page}页视频已经下载完成')
-            continue
+        with Pool(max_workers=5) as pool:
+            page += 1
+            if f'{uid}-{page}' in video_urls:
+                print(f'uid:{uid} 第{page}页视频已经下载')
+                continue
 
-        url = make_up_index_url(uid, page)
-        html = m3u8.request_text(url)
-        av_ids = parse_page_with_av(html)
+            url = make_up_index_url(uid, page)
+            html = m3u8.request_text(url)
+            av_ids = parse_page_with_av(html)
 
-        if not av_ids:  # 已经到达最后一页
-            print(f'uid:{uid} up视频已经下载完成')
-            break
+            if not av_ids:  # 已经到达最后一页
+                print(f'uid:{uid} up视频已经下载完成')
+                break
 
-        for av_id in av_ids:
-            download_video(av_id)
+            for av_id in av_ids:
+                pool.submit(download_video, av_id)
+
         video_urls.add(f'{uid}-{page}')
 
 
 if __name__ == '__main__':
-    uid = input('请输入up主的uid: ')
-    download_all_videos(uid)
+    download_all_videos('1493087')

@@ -1,6 +1,6 @@
 import os
 import math
-from typing import List, Optional, Generator
+from typing import List, Optional, Iterator, Union
 
 from tqdm import tqdm
 import requests
@@ -40,26 +40,77 @@ def video_duration(video_path, video_capture=None) -> float:
     return frame_count / fps
 
 
-def request_video(url: str, headers=None, stream=True, min_delay: float = 0, max_delay: float = 2, **kwargs) -> bytes:
+def request_video(url: str, headers=None, min_delay: float = 0, max_delay: float = 1, **kwargs) -> bytes:
+    """
+    请求视频文件字节
+
+    :param url: 视频文件url
+
+    :param headers:  请求头
+
+    :param min_delay:  最小延迟
+
+    :param max_delay:  最大延迟
+
+    :param kwargs:  其他参数
+    """
     delay.random_delay(min_delay, max_delay)
 
     if headers is None:
         headers = setting.HEADERS
 
-    response = requests.get(url, headers=headers, stream=stream, **kwargs)
-    response.raise_for_status()
-    return response.content
+    response = requests.get(url, headers=headers, stream=True, **kwargs)
+    try:
+        response.raise_for_status()
+        return response.content
+    except requests.exceptions.HTTPError as e:
+        print(f'请求 {url} 失败')
+        return b''
 
 
-def request_text(url: str, headers=None, min_delay: int = 0, max_delay: int = 2, **kwargs) -> str:
+def request_video_stream(url: str, headers=None, min_delay: float = 0, max_delay: float = 1, **kwargs) -> Iterator[bytes]:
+    """
+    请求视频文件字节流流
+
+    :param url:  视频文件url
+
+    :param headers:  请求头
+
+    :param min_delay:   最小延迟
+
+    :param max_delay:   最大延迟
+
+    :param kwargs:    其他参数
+
+    :return: 视频文件字节流
+    """
+    delay.random_delay(min_delay, max_delay)
+
+    if headers is None:
+        headers = setting.HEADERS
+
+    with requests.get(url, headers=headers, stream=True, **kwargs) as response:
+        try:
+            response.raise_for_status()
+            for r in response.iter_content(chunk_size=8192):
+                yield r
+        except requests.exceptions.HTTPError as e:
+            print(f'请求 {url} 失败')
+
+
+def request_text(url: str, headers=None, min_delay: int = 0, max_delay: int = 1, **kwargs) -> str:
     delay.random_delay(min_delay, max_delay)
 
     if headers is None:
         headers = setting.HEADERS
 
     response = requests.get(url, headers=headers, **kwargs)
-    response.raise_for_status()
-    return response.text
+    try:
+        response.raise_for_status()
+        return response.text
+    except requests.exceptions.HTTPError as e:
+        print(f'请求 {url} 失败')
+        return ''
 
 
 def parse_m3u8(url: str) -> list:
@@ -82,6 +133,26 @@ def parse_m3u8(url: str) -> list:
     return ts_files
 
 
+def _download_video(video_stream: Union[bytes, Iterator[bytes]], save_path: str):
+    """
+    下载视频文件
+
+    :param video_stream: 视频文件字节流
+
+    :param save_path: 保存地址 xxx.mp4
+
+    :return:
+    """
+    with open(save_path, 'wb') as f:
+        if isinstance(video_stream, bytes):
+            f.write(video_stream)
+        elif isinstance(video_stream, Iterator):
+            for chunk in tqdm(video_stream):
+                f.write(chunk)
+        else:
+            raise TypeError('video_stream 类型错误, 应为 bytes 或 Iterator[bytes]')
+
+
 def download_ts_files(ts_files: List[str], save_path: str):
     """
     下载ts文件列表
@@ -92,11 +163,9 @@ def download_ts_files(ts_files: List[str], save_path: str):
     """
     os.makedirs(save_path, exist_ok=True)
 
-    exp = math.exp(len(ts_files))
     for i, ts_file in enumerate(ts_files):
-        with open(os.path.join(save_path, f'({i: 04d}).ts'), 'wb') as f:
-            f.write(request_video(ts_file, min_delay=0, max_delay=0.2))
-            print(f'Downloaded {i+1}')
+        _download_video(request_video(ts_file, min_delay=0, max_delay=0.2), os.path.join(save_path, f'({i: 04d}).ts'))
+        print(f'Downloaded {i+1}')
 
 
 def merge_download_ts_files(ts_files: list, save_path: str, cover: bool = False):
@@ -113,7 +182,7 @@ def merge_download_ts_files(ts_files: list, save_path: str, cover: bool = False)
         print(save_path, '已存在')
         return
 
-    with open(save_path, 'ab') as f:
+    with open(save_path, 'wb') as f:
         for ts_file in tqdm(ts_files):
             f.write(request_video(ts_file))
 
@@ -132,8 +201,7 @@ def download_mp4_video(mp4_url: str, save_path: str, cover: bool = False):
         print(save_path, '已存在')
         return
 
-    with open(save_path, 'wb') as f:
-        f.write(request_video(mp4_url))
+    _download_video(request_video_stream(mp4_url), save_path)
 
 
 def download_m3u8_video(m3u8_url: str, save_path: str, cover: bool = False):
@@ -162,7 +230,7 @@ def auto_download_video(video_url: str, save_path: str, cover: bool = False):
     :param cover: 当前文件存在时是否覆盖, 默认为 False
     """
 
-    if video_url.find('.m3u8') != -1:
+    if '.m3u8' in video_url:
         return download_m3u8_video(video_url, save_path, cover=cover)
     else:
         return download_mp4_video(video_url, save_path, cover=cover)

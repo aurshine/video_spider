@@ -2,6 +2,7 @@ import os
 import re
 import json
 from typing import List
+from concurrent.futures import ProcessPoolExecutor as Pool
 
 import m3u8
 import setting
@@ -123,8 +124,9 @@ def download_guide(guide_name: str):
         return
 
     print(f'开始下载 栏目 {guide_name} 的所有节目')
-    for gid in get_guide_programs(guide_name):
-        download_br_tv_video(gid)
+
+    with Pool(max_workers=4) as pool:
+        pool.map(download_br_tv_video, get_guide_programs(guide_name), chunksize=5)
 
     video_urls.add(guide_name)
 

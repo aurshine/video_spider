@@ -81,7 +81,7 @@ def download_video(av_id: str):
     print(f'{av_id} 视频下载完成')
 
 
-def download_all_videos(uid :str):
+def download_all_videos(uid: str):
     """
     下载up主的所有视频
     """
@@ -101,8 +101,7 @@ def download_all_videos(uid :str):
                 print(f'uid:{uid} up视频已经下载完成')
                 break
 
-            for av_id in av_ids:
-                pool.submit(download_video, av_id)
+            pool.map(download_video, av_ids, chunksize=5)
 
         video_urls.add(f'{uid}-{page}')
 

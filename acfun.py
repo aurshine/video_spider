@@ -3,7 +3,8 @@ import re
 import gc
 import json
 from typing import Tuple
-from concurrent.futures import ThreadPoolExecutor as Pool
+from m_threadpool import NoWaitThreadPool as Pool
+import atexit
 
 import m3u8
 import delay
@@ -102,11 +103,11 @@ def download_all_videos(uid: str):
                 print(f'uid:{uid} up视频已经下载完成')
                 break
 
-            pool.map(download_video, av_ids, chunksize=5)
+            pool.map(download_video, av_ids)
 
         video_urls.add(f'{uid}-{page}')
-        gc.collect()
 
 
 if __name__ == '__main__':
+    atexit.register(gc.collect)
     download_all_videos(input('请输入up主的uid: '))

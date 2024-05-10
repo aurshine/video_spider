@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import atexit
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor as Pool
 
@@ -19,5 +20,17 @@ def delay_test():
     print('test delay')
 
 
+class Test:
+    def __enter__(self):
+        print('enter')
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('exit')
+        return True
+
+
 if __name__ == '__main__':
-    print(json.loads('[1, 2, 3]'))
+    with Test() as t:
+        raise RuntimeError('test')
+        time.sleep(5)

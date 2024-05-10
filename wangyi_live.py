@@ -1,8 +1,9 @@
 import gc
 import os
 import json
+import atexit
 from typing import List
-from concurrent.futures import ThreadPoolExecutor as Pool
+from m_threadpool import NoWaitThreadPool as Pool
 
 import m3u8
 import delay
@@ -36,8 +37,9 @@ def download_wangyi_live(data: dict, delay_min: int = 0, delay_max: int = 1):
     """
     room_name = data['roomName']
     room_id = str(data['roomId'])
-    if 'videos' not in data.keys():
+    if 'videos' not in data:
         return
+
     video_url = data['videos'][0]["videoUrl"]
 
     if room_id in video_urls:
@@ -67,8 +69,8 @@ def main():
 
         print(f'第 {i} 页直播间下载完成')
         video_urls.add(str(i))
-        gc.collect()
 
 
 if __name__ == '__main__':
+    atexit.register(gc.collect)
     main()

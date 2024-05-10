@@ -38,15 +38,17 @@ def video_duration(video_path, video_capture=None) -> float:
     return frame_count / fps
 
 
-def request_video(url: str, headers=None, **kwargs) -> bytes:
+def request_video(url: str, headers=None, **kwargs) -> Optional[requests.Response]:
     """
-    请求视频文件字节
+    请求视频文件的响应
 
     :param url: 视频文件url
 
     :param headers:  请求头
 
     :param kwargs:  其他参数
+
+    :return: 请求的响应, 发生异常时返回 None
     """
     if headers is None:
         headers = setting.HEADERS
@@ -54,15 +56,15 @@ def request_video(url: str, headers=None, **kwargs) -> bytes:
     response = requests.get(url, headers=headers, stream=True, **kwargs)
     try:
         response.raise_for_status()
-        return response.content
+        return response
     except requests.exceptions.HTTPError as e:
         print(f'请求 {url} 失败')
-        return b''
+        return None
 
 
-def request_video_stream(url: str, headers=None, **kwargs) -> Iterator[bytes]:
+def request_video_stream(url: str, headers=None, **kwargs) -> Optional[requests.Response]:
     """
-    请求视频文件字节流流
+    请求视频文件字节流响应
 
     :param url: 视频文件url
 
@@ -70,7 +72,7 @@ def request_video_stream(url: str, headers=None, **kwargs) -> Iterator[bytes]:
 
     :param kwargs: 其他参数
 
-    :return: 视频文件字节流
+    :return: 视频文件字节流响应, 发生异常时返回 None
     """
     if headers is None:
         headers = setting.HEADERS
@@ -78,10 +80,10 @@ def request_video_stream(url: str, headers=None, **kwargs) -> Iterator[bytes]:
     with requests.get(url, headers=headers, stream=True, **kwargs) as response:
         try:
             response.raise_for_status()
-            for r in response.iter_content(chunk_size=8192):
-                yield r
+            return response
         except requests.exceptions.HTTPError as e:
             print(f'请求 {url} 失败')
+            return None
 
 
 def request_text(url: str, headers=None, **kwargs) -> str:
@@ -117,7 +119,7 @@ def parse_m3u8(url: str) -> list:
     return ts_files
 
 
-def _download_video(video_stream: Union[bytes, Iterator[bytes]], save_path: str):
+def _download_video(video_stream: Union[bytes, Iterator[bytes], requests.Response], save_path: str):
     """
     下载视频文件
 
@@ -127,12 +129,18 @@ def _download_video(video_stream: Union[bytes, Iterator[bytes]], save_path: str)
 
     :return:
     """
+    if video_stream is None:
+        return
+
     with open(save_path, 'wb') as f:
         if isinstance(video_stream, bytes):
             f.write(video_stream)
         elif isinstance(video_stream, Iterator):
             for chunk in tqdm(video_stream):
                 f.write(chunk)
+        elif isinstance(video_stream, requests.Response):
+            with video_stream as r:
+                f.write(r.content)
         else:
             raise TypeError('video_stream 类型错误, 应为 bytes 或 Iterator[bytes]')
 
@@ -168,7 +176,8 @@ def merge_download_ts_files(ts_files: list, save_path: str, cover: bool = False)
 
     with open(save_path, 'wb') as f:
         for ts_file in tqdm(ts_files):
-            f.write(request_video(ts_file))
+            with request_video(ts_file) as r:
+                f.write(r.content)
 
 
 def download_mp4_video(mp4_url: str, save_path: str, cover: bool = False):
@@ -185,7 +194,7 @@ def download_mp4_video(mp4_url: str, save_path: str, cover: bool = False):
         print(save_path, '已存在')
         return
 
-    _download_video(request_video_stream(mp4_url), save_path)
+    _download_video(request_video(mp4_url), save_path)
 
 
 def download_m3u8_video(m3u8_url: str, save_path: str, cover: bool = False):
@@ -296,8 +305,9 @@ def download_video(video_url, save_path, _video_info: Optional[dict] = None, cov
         os.mkdir(save_path)
 
     video_path = os.path.join(save_path, 'video.mp4')
-    # audio_path = os.path.join(save_path, 'audio.mp3')
     auto_download_video(video_url, video_path, cover=cover)
+
+    # audio_path = os.path.join(save_path, 'audio.mp3')
     # video2audio(video_path, audio_path, cover=cover)
     # write_audio_info(audio_path, cover=cover)
 

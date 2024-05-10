@@ -2,8 +2,9 @@ import os
 import re
 import gc
 import json
+import atexit
 from typing import List
-from concurrent.futures import ThreadPoolExecutor as Pool
+from m_threadpool import NoWaitThreadPool as Pool
 
 import m3u8
 import setting
@@ -127,10 +128,9 @@ def download_guide(guide_name: str):
     print(f'开始下载 栏目 {guide_name} 的所有节目')
 
     with Pool(max_workers=4) as pool:
-        pool.map(download_br_tv_video, get_guide_programs(guide_name), chunksize=5)
+        pool.map(download_br_tv_video, get_guide_programs(guide_name))
 
     video_urls.add(guide_name)
-    gc.collect()
 
 
 def main():
@@ -139,4 +139,5 @@ def main():
 
 
 if __name__ == '__main__':
+    atexit.register(gc.collect)
     main()

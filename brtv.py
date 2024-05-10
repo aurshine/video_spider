@@ -4,7 +4,7 @@ import gc
 import json
 import atexit
 from typing import List
-from m_threadpool import NoWaitThreadPool as Pool
+from concurrent.futures import ThreadPoolExecutor as Pool
 
 import m3u8
 import setting

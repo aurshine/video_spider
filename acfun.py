@@ -3,9 +3,9 @@ import re
 import gc
 import json
 from typing import Tuple
-from m_threadpool import NoWaitThreadPool as Pool
-import atexit
+from concurrent.futures import ThreadPoolExecutor as Pool
 
+import atexit
 import m3u8
 import delay
 import setting

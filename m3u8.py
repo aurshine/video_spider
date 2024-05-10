@@ -111,9 +111,12 @@ def parse_m3u8(url: str) -> list:
     # 解析m3u8文件
     text = request_text(url)
     for line in text.split('\n'):
-        if line.find('.ts') != -1:
+        if line.startswith('#'):
+            continue
+
+        if '.ts' in line:
             ts_files.append(urljoin(url, line))
-        elif line.find('.m3u8') != -1:
+        elif '.m3u8' in line:
             ts_files.extend(parse_m3u8(urljoin(url, line)))
 
     return ts_files
@@ -166,7 +169,7 @@ def merge_download_ts_files(ts_files: list, save_path: str, cover: bool = False)
 
     :param ts_files: ts文件列表
 
-    :param save_path: 保存路径 xxx/xxx.ts
+    :param save_path: 保存路径 xxx.ts
 
     :param cover: 当文件存在时是否覆盖, 默认为 False
     """

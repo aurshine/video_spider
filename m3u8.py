@@ -1,7 +1,6 @@
 import os
 from typing import List, Optional, Iterator, Union
 
-from tqdm import tqdm
 import requests
 from urllib.parse import urljoin
 import cv2
@@ -139,7 +138,7 @@ def _download_video(video_stream: Union[bytes, Iterator[bytes], requests.Respons
         if isinstance(video_stream, bytes):
             f.write(video_stream)
         elif isinstance(video_stream, Iterator):
-            for chunk in tqdm(video_stream):
+            for chunk in video_stream:
                 f.write(chunk)
         elif isinstance(video_stream, requests.Response):
             with video_stream as r:
@@ -178,7 +177,7 @@ def merge_download_ts_files(ts_files: list, save_path: str, cover: bool = False)
         return
 
     with open(save_path, 'wb') as f:
-        for ts_file in tqdm(ts_files):
+        for ts_file in ts_files:
             with request_video(ts_file) as r:
                 f.write(r.content)
 

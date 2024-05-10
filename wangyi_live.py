@@ -2,6 +2,7 @@ import gc
 import os
 import json
 import atexit
+import time
 from typing import List
 
 import m3u8
@@ -47,10 +48,11 @@ def download_wangyi_live(data: dict, delay_min: int = 0, delay_max: int = 1):
 
     print(f'开始下载 {room_name} {room_id}')
 
+    start = time.time()
     m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
     video_urls.add(room_id)
     delay.random_delay(delay_min, delay_max)
-    print(f'{room_name} 直播下载完成')
+    print(f'{room_name} 直播下载完成 耗时 {time.time() - start:.2f} 秒')
 
 
 def main():

@@ -4,6 +4,8 @@ import json
 import atexit
 import time
 from typing import List
+import traceback
+import requests
 
 import m3u8
 import delay
@@ -48,11 +50,15 @@ def download_wangyi_live(data: dict, delay_min: int = 0, delay_max: int = 1):
 
     print(f'开始下载 {room_name} {room_id}')
 
-    start = time.time()
-    m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
-    video_urls.add(room_id)
-    delay.random_delay(delay_min, delay_max)
-    print(f'{room_name} 直播下载完成 耗时 {time.time() - start:.2f} 秒')
+    try:
+        start = time.time()
+        m3u8.download_video(video_url, os.path.join(setting.WANGYI_LIVE_VIDEO_PATH, room_id), _video_info=data, cover=True)
+        video_urls.add(room_id)
+        delay.random_delay(delay_min, delay_max)
+        print(f'{room_name} 直播下载完成 耗时 {time.time() - start:.2f} 秒')
+    except requests.exceptions.ConnectionError as e:
+        print(f'{room_name} 直播下载失败 {e}')
+        traceback.print_exc()
 
 
 def main():
@@ -61,6 +67,7 @@ def main():
             print(f'第 {i} 页直播间已下载')
             continue
 
+        print(f'开始下载第 {i} 页直播间')
         url = make_wy_live_api_url(i)
         text = m3u8.request_text(url, timeout=50)
         datas = parse_wy_live_api_response(text)

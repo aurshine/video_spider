@@ -95,6 +95,7 @@ def download_all_videos(uid: str):
                 print(f'uid:{uid} 第{page}页视频已经下载')
                 continue
 
+            print(f'开始下载 uid:{uid} 第{page}页视频')
             url = make_up_index_url(uid, page)
             html = m3u8.request_text(url)
             av_ids = parse_page_with_av(html)

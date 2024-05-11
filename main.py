@@ -29,8 +29,3 @@ class Test:
         print('exit')
         return True
 
-
-if __name__ == '__main__':
-    with Test() as t:
-        raise RuntimeError('test')
-        time.sleep(5)

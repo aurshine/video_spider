@@ -5,6 +5,7 @@ import requests
 from urllib.parse import urljoin
 import cv2
 import ffmpeg
+from pydub import AudioSegment
 
 import setting
 
@@ -385,7 +386,7 @@ def video2audio(video_path, audio_path, _audio_info=None, cover=False):
 
     :param video_path: 视频文件地址 xxx/video.mp4
 
-    :param audio_path: 音频文件地址 xxx/audio.mp3
+    :param audio_path: 音频文件地址 xxx/audio.wav
 
     :param _audio_info: 音频信息, 可为任何可以被转化为字符串的类型, 默认为 None, 若不为 None, 则保存为 audio_info.txt 文件
 
@@ -396,11 +397,10 @@ def video2audio(video_path, audio_path, _audio_info=None, cover=False):
         return
 
     try:
-        if os.path.exists(audio_path) and not cover:
-            print(audio_path, '已存在')
-            return
-        else:
-            ffmpeg.input(video_path).output(audio_path).run()
+        if cover or not os.path.exists(audio_path):
+            audio = AudioSegment.from_file(video_path, format='mp4')
+            audio.export(audio_path, format='wav')
+
             if _audio_info is not None:
                 write_audio_info(audio_path, _audio_info, cover=cover)
 

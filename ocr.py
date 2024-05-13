@@ -83,8 +83,8 @@ class VideoOCR:
 
                 # 取最下面出现的字体
                 text = img_ocr[-1]["text"]
-                start = max(0, int((frame_count - 1) * skip_frames * self.frame_duration * 1000))
-                end = int(frame_count * skip_frames * self.frame_duration * 1000)
+                start = max(0, int((frame_count - skip_frames) * self.frame_duration * 1000))
+                end = int(frame_count * self.frame_duration * 1000)
                 if subitems and subitems[-1].text == text:
                     subitems[-1].end = pysrt.SubRipTime.coerce(end)
                 else:

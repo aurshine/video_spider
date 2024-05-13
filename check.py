@@ -7,6 +7,9 @@ from tqdm import tqdm
 import m3u8
 
 
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
 def check_paths_exist(dir_path, other_paths: list) -> list:
     """
     检查 dir_path 下是否存在 other_paths 中所有的路径
@@ -159,7 +162,7 @@ def check_size(dir_name, unit: Optional[str] = 'g') -> Tuple[float, int]:
 
     :return: 文件夹大小
     """
-    dir_name = os.path.join(os.getcwd(), dir_name)
+    dir_name = os.path.join(ROOT, dir_name)
 
     size, cnt = 0, 0
     if os.path.isdir(dir_name):
@@ -194,7 +197,7 @@ def ls(dir_name) -> List[str]:
 
     :return: 文件列表
     """
-    paths = [os.path.join(os.getcwd(), dir_name, name) for name in os.listdir(dir_name)]
+    paths = [os.path.join(ROOT, dir_name, name) for name in os.listdir(dir_name)]
     return paths
 
 
@@ -218,7 +221,7 @@ def video_is_error(dir_names: Union[str, List[str]]):
     return broken_videos
 
 
-def dir_names(paths: List[str]):
+def dir_names(paths: Union[str, List[str]]):
     """
     获取路径的目录名
 
@@ -270,7 +273,7 @@ def run_command(command: str, args):
 
 def run_chain_commands(commands: str):
     """
-    运行命令, 可以链式运行多个命令，每个命令用空格隔开
+    运行命令, 可以链式运行多个命令，每个命令用 > 隔开
 
     上一个命令的输出为下一个命令的输入
 
@@ -298,8 +301,27 @@ def get_history_returns(index=-1):
     return HISTORY_RETURNS[int(index)]
 
 
+def check_vi2au(dirs_path: Union[str, List[str]]):
+    """
+    视频格式转换 mp4 -> wav
+
+    :param dirs_path: 存储视频的文件夹的路径列表, 如 xxx/video_path/video.mp4
+
+    :return: None
+    """
+    if isinstance(dirs_path, str):
+        dirs_path = [dirs_path]
+
+    for dir_path in dirs_path:
+        video_path = os.path.join(dir_path, 'video.mp4')
+
+        if not os.path.exists(video_path) or not m3u8.video2audio(video_path):
+            check_delete(dir_path)
+
+
 # 历史命令返回值
 HISTORY_RETURNS = []
+
 
 COMMANDS = {'help': check_help,
             'duration': check_duration,
@@ -314,7 +336,8 @@ COMMANDS = {'help': check_help,
             'print': check_print,
             'split': str.split,
             'history': get_history_returns,
-            'cwd': os.getcwd,
+            'cwd': ROOT,
+            'v2a': check_vi2au,
             }
 
 

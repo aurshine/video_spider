@@ -5,7 +5,6 @@ import requests
 from urllib.parse import urljoin
 import cv2
 import ffmpeg
-from pydub import AudioSegment
 
 import setting
 
@@ -378,7 +377,7 @@ def write_audio_info(audio_path, _audio_info: any = None, cover: bool = False):
     return _audio_info
 
 
-def video2audio(video_path, audio_path, _audio_info=None, cover=False):
+def video2audio(video_path, audio_path=None, _audio_info=None, cover=False):
     """
     视频转音频
 
@@ -386,26 +385,32 @@ def video2audio(video_path, audio_path, _audio_info=None, cover=False):
 
     :param video_path: 视频文件地址 xxx/video.mp4
 
-    :param audio_path: 音频文件地址 xxx/audio.wav
+    :param audio_path: 音频文件地址 xxx/audio.wav, 默认为 None, 若为 None, 则保存为 video_path 所在目录的 audio.wav
 
     :param _audio_info: 音频信息, 可为任何可以被转化为字符串的类型, 默认为 None, 若不为 None, 则保存为 audio_info.txt 文件
 
     :param cover: 当文件存在时是否覆盖, 默认为 False
+
+    :return: ffmpeg抛出异常返回 False, 否则返回 True
     """
     if not os.path.exists(video_path):
         print(video_path, '不存在')
         return
 
+    if audio_path is None:
+        audio_path = os.path.join(os.path.dirname(video_path), 'audio.wav')
+
     try:
         if cover or not os.path.exists(audio_path):
-            audio = AudioSegment.from_file(video_path, format='mp4')
-            audio.export(audio_path, format='wav')
-
+            print(f'Converting {video_path} to {audio_path}')
+            ffmpeg.input(video_path, y=None).output(audio_path, format="wav").run()
             if _audio_info is not None:
                 write_audio_info(audio_path, _audio_info, cover=cover)
 
+        return True
     except ffmpeg.Error as e:
         print(f'Error occurred: {e.stderr}\n Video: {video_path}\n')
+        return False
 
 
 def video_is_ok(video_path):

@@ -140,7 +140,7 @@ class VideoOCR:
 
 def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames: int = 10, eps: float = 3, max_count: int = 5):
     """
-    识别视频中的字幕, 只识别最下面出现的字体
+    识别视频中的字幕, 智能过滤背景噪声
 
     :param video: 视频路径或cv2.VideoCapture对象
 

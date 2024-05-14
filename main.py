@@ -1,4 +1,3 @@
-import whisper
-from m3u8 import video2audio
+import ocr
 
-video2audio('video.mp4')
+ocr.subtitle_ocr('brtv/1/video.mp4', 'brtv/1/ocr.srt')

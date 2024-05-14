@@ -5,6 +5,7 @@ from typing import List, Union, Tuple, Optional
 from tqdm import tqdm
 
 import m3u8
+from url import UrlSet
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -313,10 +314,31 @@ def check_vi2au(dirs_path: Union[str, List[str]]):
         dirs_path = [dirs_path]
 
     for dir_path in dirs_path:
+        if not os.path.isdir(dir_path):
+            continue
+
         video_path = os.path.join(dir_path, 'video.mp4')
 
         if not os.path.exists(video_path) or not m3u8.video2audio(video_path):
             check_delete(dir_path)
+
+
+def check_update_download_urls(dir_paths: Union[str, List[str]]):
+    """
+    根据子文件夹名，更新下载链接
+
+    :param dir_paths: 下载链接文件所在文件夹
+
+    :return: None
+    """
+    if not isinstance(dir_paths, list):
+        dir_paths = [dir_paths]
+
+    for dir_path in dir_paths:
+        url_set = UrlSet(dir_path)
+        for sub_path in tqdm(os.listdir(dir_path)):
+            if os.path.isdir(os.path.join(dir_path, sub_path)):
+                url_set.add(sub_path)
 
 
 # 历史命令返回值
@@ -338,6 +360,7 @@ COMMANDS = {'help': check_help,
             'history': get_history_returns,
             'cwd': ROOT,
             'v2a': check_vi2au,
+            'update_urls': check_update_download_urls
             }
 
 

@@ -11,9 +11,8 @@ import delay
 import setting
 from url import UrlSet
 
-DOWNLOAD_URL_PATH = os.path.join(setting.ACFUN_VIDEO_PATH, 'download_url.txt')
 
-video_urls = UrlSet(DOWNLOAD_URL_PATH, DOWNLOAD_URL_PATH)
+video_urls = UrlSet(setting.ACFUN_VIDEO_PATH)
 
 
 def make_up_index_url(uid: str, page: int):

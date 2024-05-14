@@ -5,36 +5,37 @@ from threading import Lock as ThreadLock
 
 
 class UrlSet:
-    def __init__(self, init_url_data: Union[set, str, None], save_path):
-        if init_url_data is None:
-            init_url_data = set()
+    def __init__(self, dir_path: str):
+        """
+        以一个文件夹的所有子文件夹名作为 url 集合
 
-        if not os.path.exists(save_path):
-            f = open(save_path, 'w', encoding='utf-8')
-            f.close()
+        :param dir_path: 文件夹路径
+        """
+        self.save_path = os.path.join(dir_path, 'download_urls')
+        self.urls = set()
 
-        if isinstance(init_url_data, set):
-            self.urls = init_url_data
-        elif isinstance(init_url_data, str):
-            with open(init_url_data, 'r', encoding='utf-8') as f:
-                self.urls = set(f.read().splitlines())
+        if not os.path.exists(self.save_path):
+            with open(self.save_path, 'w', encoding='utf-8'):
+                pass
         else:
-            raise TypeError("Invalid type for init_url_data")
+            with open(self.save_path, 'r', encoding='utf-8') as f:
+                for sub_dir in f.readlines():
+                    self.urls.add(sub_dir.strip())
 
-        self.save_path = save_path
         self.process_lock = ProcessLock()
         self.thread_lock = ThreadLock()
 
     def add(self, url: str):
-        with self.process_lock:
-            with self.thread_lock:
-                if url not in self.urls:
-                    self.urls.add(url)
-                    with open(self.save_path, 'a', encoding='utf-8') as f:
-                        f.write(url + '\n')
+        with self.process_lock, self.thread_lock:
+            url = str(url).strip()
+            if url not in self.urls:
+                self.urls.add(url)
+                with open(self.save_path, 'a', encoding='utf-8') as f:
+                    f.write(url + '\n')
 
-    def __contains__(self, item: str):
-        return str(item).strip() in self.urls
+    def __contains__(self, url: str):
+        url = str(url).strip()
+        return url in self.urls
 
     def __len__(self):
         return len(self.urls)

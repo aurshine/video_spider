@@ -11,9 +11,8 @@ import setting
 import delay
 from url import UrlSet
 
-DOWNLOAD_URL_PATH = os.path.join(setting.BRTV_VIDEO_PATH, 'download_url.txt')
 
-video_urls = UrlSet(DOWNLOAD_URL_PATH, DOWNLOAD_URL_PATH)
+video_urls = UrlSet(setting.BRTV_VIDEO_PATH)
 
 
 def make_callback() -> str:

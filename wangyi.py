@@ -11,14 +11,13 @@ import delay
 import setting
 from url import UrlSet
 
-DOWNLOAD_URL_PATH = os.path.join(setting.WANGYI_VIDEO_PATH, 'download_video_url')
 
 TAB_TYPES = ['vlog', 'game', 'funny', 'music', 'redian', 'foodie', 'travel', 'movies', 'sports',
              'farmer', 'knowledge', 'military', 'adorable', 'entertain', 'opusculum']
 
 USER_IDS = '1de58dbf334697e9a42c9532ca857c98'
 
-video_urls = UrlSet(DOWNLOAD_URL_PATH, DOWNLOAD_URL_PATH)
+video_urls = UrlSet(setting.WANGYI_VIDEO_PATH)
 
 
 def make_wy_api_url(tab_type: str, user_id: str, size: int = 20) -> str:

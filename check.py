@@ -4,6 +4,7 @@ from typing import List, Union, Tuple, Optional
 
 from tqdm import tqdm
 
+import ocr
 import m3u8
 from url import UrlSet
 
@@ -127,7 +128,7 @@ def check_dfs_num_files(path: str = None, root=True) -> int:
 
 def check_delete(dir_name: str) -> None:
     """
-    删除 dir_name 文件夹
+    删除 dir_name 文件或文件夹
 
     :param dir_name: 文件夹名
     """
@@ -222,7 +223,7 @@ def video_is_error(dir_names: Union[str, List[str]]):
     return broken_videos
 
 
-def dir_names(paths: Union[str, List[str]]):
+def check_dir_names(paths: Union[str, List[str]]):
     """
     获取路径的目录名
 
@@ -243,8 +244,9 @@ def check_print(value):
     :param value: 值
     """
     if isinstance(value, list):
-        value = '\n'.join(value) + f"\n\ntotal = {len(value)}"
-    print(value)
+        print('\n'.join(value) + f"\n\ntotal = {len(value)}")
+    else:
+        print(value)
     return value
 
 
@@ -341,6 +343,35 @@ def check_update_download_urls(dir_paths: Union[str, List[str]]):
                 url_set.add(sub_path)
 
 
+def check_ocr(dir_names: Union[str, List[str]]):
+    """
+    调用百度ocr接口进行文字识别
+
+    识别完成后，会在视频文件夹下生成 subtitle.srt 文件，并生成对应的音频文件, 删除 video.mp4 文件
+
+    :param dir_names: 视频文件夹路径, 视频路径为 dir_name/video.mp4
+    """
+    if not isinstance(dir_names, list):
+        dir_names = [dir_names]
+
+    for dir_name in tqdm(dir_names):
+        if not os.path.isdir(dir_name):
+            continue
+
+        video_path = os.path.join(dir_name, 'video.mp4')
+        srt_path = os.path.join(dir_name, 'subtitle.srt')
+        audio_path = os.path.join(dir_name, 'audio.wav')
+        if os.path.exists(video_path) and not os.path.exists(srt_path):
+            if ocr.subtitle_ocr(video_path, srt_path) == 0:
+                check_delete(dir_name)
+                os.system('cls')
+                continue
+
+        os.system('cls')
+        m3u8.video2audio(video_path, audio_path, cover=False)
+        check_delete(video_path)
+
+
 # 历史命令返回值
 HISTORY_RETURNS = []
 
@@ -353,14 +384,15 @@ COMMANDS = {'help': check_help,
             'size': check_size,
             'ls': ls,
             'is_error': video_is_error,
-            'dir_names': dir_names,
+            'dir_names': check_dir_names,
             'len': len,
             'print': check_print,
             'split': str.split,
-            'history': get_history_returns,
+            'his': get_history_returns,
             'cwd': ROOT,
             'v2a': check_vi2au,
-            'update_urls': check_update_download_urls
+            'update_urls': check_update_download_urls,
+            'ocr': check_ocr,
             }
 
 

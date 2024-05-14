@@ -2,6 +2,7 @@ from typing import Optional, Union, List
 
 import numpy as np
 from paddleocr import PaddleOCR
+import paddleocr.paddleocr as paddleocr
 import cv2
 import pysrt
 
@@ -138,7 +139,7 @@ class VideoOCR:
         return subitems
 
 
-def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames: int = 10, eps: float = 3, max_count: int = 5):
+def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames: int = 10, eps: float = 3, max_count: int = 5) -> int:
     """
     识别视频中的字幕, 智能过滤背景噪声
 
@@ -152,7 +153,7 @@ def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames
 
     :param max_count: 字幕出现的最大次数，超过次数则将该字幕加入黑名单
 
-    :return:
+    :return: 返回实际保存的字幕数量
     """
     with VideoOCR(video) as video:
         # 视频x轴的中点
@@ -206,5 +207,8 @@ def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames
                                                            text=box.text,
                                                            start=box.start_time,
                                                            end=box.end_time))
+
+        save_srt = [box for box in selected_boxes if box.text not in black_list]
         # 保存字幕文件
-        pysrt.SubRipFile([box for box in selected_boxes if box.text not in black_list]).save(srt_path, encoding='utf-8')
+        pysrt.SubRipFile(save_srt).save(srt_path, encoding='utf-8')
+        return len(save_srt)

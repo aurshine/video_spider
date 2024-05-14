@@ -103,7 +103,7 @@ class VideoOCR:
 
     def ocr(self, skip_frames: int = 10) -> List[SubTitleBox]:
         """
-        识别视频中的文字
+        识别视频中的所有文字
 
         :param skip_frames: 跳过的帧数，默认10
 
@@ -124,24 +124,21 @@ class VideoOCR:
 
             if frame_count % skip_frames == 0:
                 # 单位: ms
-                subtitle_boxes = image_ocr(frame)
+                # 截取下半部分图片进行识别
+                subtitle_boxes = image_ocr(frame[2 * frame.shape[0] // 3:])
 
                 start = max(0, int((frame_count - skip_frames) * self.frame_duration * 1000))
                 end = int(frame_count * self.frame_duration * 1000)
 
                 # 从下往上放入
                 for box in subtitle_boxes[::-1]:
-                    subitems.append(SubTitleBox(paddle_ocr_ret=box, start_time=start, end_time=end))
-                    # pysrt.SubRipItem(index=len(subitems) + 1,
-                    #                  text=text,
-                    #                  start=start,
-                    #                  end=end)
+                    subitems.append(SubTitleBox(l_bottom=box.l_bottom, r_bottom=box.r_bottom, l_top=box.l_top, r_top=box.r_top, text=box.text, confidence=box.confidence, start_time=start, end_time=end))
             frame_count += 1
 
         return subitems
 
 
-def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames: int = 10):
+def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames: int = 10, eps: float = 3, max_count: int = 5):
     """
     识别视频中的字幕, 只识别最下面出现的字体
 
@@ -151,7 +148,63 @@ def subtitle_ocr(video: Union[cv2.VideoCapture, str], srt_path: str, skip_frames
 
     :param skip_frames: 跳过的帧数，默认10
 
+    :param eps: 字幕框x轴的中点与视频x轴的中点的可接受误差，若在误差内则认为字幕框为有效
+
+    :param max_count: 字幕出现的最大次数，超过次数则将该字幕加入黑名单
+
     :return:
     """
     with VideoOCR(video) as video:
-        subtitle_boxes = video.ocr(skip_frames)
+        # 视频x轴的中点
+        half_w = video.video.get(cv2.CAP_PROP_FRAME_WIDTH) / 2
+        # 字幕时间戳
+        timestamp = {}
+        # 字幕黑名单
+        black_list = set()
+        # 每个字幕出现的次数
+        counter = {}
+
+        def check_black_list(_box):
+            """
+            检查当前字幕是否在黑名单中
+            """
+            if _box.text in black_list:
+                return True
+
+            counter.setdefault(_box.text, 0)
+            counter[_box.text] += 1
+            if counter[_box.text] > max_count:
+                black_list.add(_box.text)
+
+            return _box.text in black_list
+
+        def check_neighbour(_box: SubTitleBox):
+            """
+            检查当前字幕是否与上一个字幕相邻
+
+            并跟新_box.text出现的时间戳
+            """
+            last_time = timestamp.get(_box.text, None)
+            timestamp[_box.text] = _box.end_time
+            return last_time is None or _box.start_time - last_time > int(1000 * video.frame_duration * skip_frames)
+
+        def check_middle(_box: SubTitleBox):
+            """
+            检查当前字幕是否在视频中间
+            """
+            return abs((_box.l_top[0] + _box.r_top[0] + _box.l_bottom[0] + _box.r_bottom[0]) / 4 - half_w) < eps
+
+        selected_boxes = []
+        for box in video.ocr(skip_frames):
+            if not check_black_list(box) and check_middle(box) and check_neighbour(box):
+                if selected_boxes and selected_boxes[-1].text == box.text:
+                    # 上一个字幕框与当前字幕框相同, 更新结束时间
+                    selected_boxes[-1].end = box.end_time
+                else:
+                    # 新增字幕框
+                    selected_boxes.append(pysrt.SubRipItem(index=len(selected_boxes) + 1,
+                                                           text=box.text,
+                                                           start=box.start_time,
+                                                           end=box.end_time))
+        # 保存字幕文件
+        pysrt.SubRipFile([box for box in selected_boxes if box.text not in black_list]).save(srt_path, encoding='utf-8')

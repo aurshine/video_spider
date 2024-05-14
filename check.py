@@ -12,252 +12,284 @@ from url import UrlSet
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
-def check_paths_exist(dir_path, other_paths: list) -> list:
-    """
-    检查 dir_path 下是否存在 other_paths 中所有的路径
+class Command:
+    name = 'Command'
 
-    返回不存在的路径列表
+    cmd = ''
 
-    :param dir_path: 文件夹的地址
+    helo_doc = """暂无帮助文档"""
 
-    :param other_paths: 需要检查的文件名或文件夹名组成的列表
+    def __call__(self, root, *args, **kwargs):
+        raise NotImplementedError()
 
-    :return: 不存在的路径列表
-    """
-    not_exist_paths = []
-    for other_path in other_paths:
-        other_path = os.path.join(dir_path, other_path)
-        if not os.path.exists(other_path):
-            not_exist_paths.append(other_path)
+    def __hash__(self):
+        return hash(self.cmd)
 
-    return not_exist_paths
+    def __eq__(self, other):
+        if isinstance(other, Command):
+            return self.cmd == other.cmd
+        elif isinstance(other, str):
+            return self.cmd == other
 
 
-def check_duration(video_dirs: List[str] = None, unit: str = 'h') -> float:
-    """
-    检查 video_dirs 中所有视频文件的总时长
+class CheckDuration(Command):
+    name = 'check_duration'
 
-    :param video_dirs: 视频文件夹地址列表, 为空时会从控制台输入
+    cmd = 'duration'
 
-    :param unit: 时间单位, 可选为 'h' (小时), 'm' (分钟) 's'(秒)
+    help_doc = ('检查文件夹包含视频的总时长: 单位(h)\n'
+                '传入一个视频文件或文件夹地址, 程序会自动检查该文件夹下所有视频文件的总时长\n'
+                '返回视频时间 float\n')
 
-    :return: 视频总时长
-    """
-    video_duration = 0
+    def __call__(self, path: str, root=True, *args, **kwargs) -> float:
+        video_duration = 0
 
-    if video_dirs is None:
-        video_dirs = input('输入文件夹地址, 用空格分隔: ').split()
+        if os.path.isdir(path):
+            for sub_path in os.listdir(path):
+                sub_path = os.path.join(path, sub_path)
+                video_duration += self(sub_path, root=False)
+        elif path.endswith('.mp4'):
+            video_duration = m3u8.video_duration(path) / 3600
 
-    if unit is None:
-        unit = input('输入时间单位, 可选: h (小时), m (分钟) s(秒): ').strip()
+        if root:
+            print(f'视频总时长: {video_duration: .2f}h')
 
-    while unit not in ['h', 'm', 's']:
-        print('时间单位输入错误')
-        unit = input('输入时间单位, 可选: h (小时), m (分钟) s(秒): ').strip()
+        return video_duration
 
-    for video_dir in video_dirs:
-        for path in tqdm(os.listdir(video_dir)):
-            path = os.path.join(video_dir, path)
-            if not os.path.isdir(path):
+
+class CheckDFSNumFiles(Command):
+    name = 'check_dfs_num_files'
+
+    cmd = 'dfs_num_files'
+
+    help_doc = '递归检查一个文件夹下的文件数量'
+
+    def __call__(self, path: str = None, root=True, *args, **kwargs) -> int:
+        num_files = 0
+        if os.path.isdir(path):
+            for sub_path in os.listdir(path):
+                num_files += self(os.path.join(path, sub_path), root=False)
+        else:
+            num_files = 1
+
+        if root:
+            print(f'文件夹 {path} 下共有 {num_files} 个文件')
+
+        return num_files
+
+
+class CheckDelete(Command):
+    name = 'check_delete'
+
+    cmd = 'del'
+
+    help_doc = '删除一个文件或文件夹'
+
+    def __call__(self, path: str, root=True, *args, **kwargs) -> None:
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+                print(f'删除文件夹 {path}')
+            else:
+                os.remove(path)
+                print(f'删除文件 {path}')
+
+
+class CheckSize(Command):
+    name = 'check_size'
+
+    cmd = 'size'
+
+    help_doc = '检查文件或文件夹大小, 并计算文件数量'
+
+    def __call__(self, path: str, root=True, *args, **kwargs) -> Tuple[float, int]:
+        size, cnt = 0, 0
+        if os.path.isdir(path):
+            for sub_path in os.listdir(path):
+                _size, _cnt = self(os.path.join(path, sub_path), root=False)
+                size += _size
+                cnt += _cnt
+        else:
+            size = os.path.getsize(path) / (1024 ** 3)
+            cnt = 1
+
+        if root:
+            print(f'{path} 大小为{size: .2f}G 共有{cnt}个文件)')
+
+        return size, cnt
+
+
+class CheckLs(Command):
+    name = 'check_ls'
+
+    cmd = 'ls'
+
+    help_doc = '列出文件夹下的文件'
+
+    def __call__(self, path: str, root=True, *args, **kwargs) -> List[str]:
+        return [os.path.join(path, sub_path) for sub_path in os.listdir(path)]
+
+
+class CheckVideoIsError(Command):
+    name = 'check_video_is_error'
+
+    cmd = 'is_error'
+
+    help_doc = '检查video.mp4 是否损坏'
+
+    def __call__(self, video_paths: Union[str, List[str]], root=True, *args, **kwargs) -> List[str]:
+
+        if isinstance(video_paths, str):
+            video_paths = [video_paths]
+
+        broken_videos = [video_path for video_path in video_paths if not m3u8.video_is_ok(video_path)]
+        return broken_videos
+
+
+class CheckVideo2Audio(Command):
+    name = 'check_video2audio'
+
+    cmd = 'v2a'
+
+    help_doc = '视频格式转换 mp4 -> wav'
+
+    def __call__(self, video_path: Union[str, List[str]], root=True, *args, **kwargs):
+            if isinstance(video_path, str):
+                video_path = [video_path]
+
+            for video in video_path:
+                if os.path.exists(video) and not m3u8.video2audio(video):
+                    shutil.rmtree(os.path.dirname(video))
+
+
+class CheckDirNames(Command):
+    name = 'check_dir_names'
+
+    cmd = 'dir_names'
+
+    help_doc = ('获取路径的目录名\n'
+                '传入任意数量的文件或文件夹路径, 程序会返回该路径的目录名\n')
+
+    def __call__(self, paths: Union[str, List[str]], root=True, *args, **kwargs) -> List[str]:
+        if isinstance(paths, str):
+            paths = [paths]
+
+        return [os.path.dirname(path) for path in paths if os.path.exists(path)]
+
+
+class CheckUpdateDownloadUrls(Command):
+    name = 'check_update_download_urls'
+
+    cmd = 'update_urls'
+
+    help_doc = '根据子文件夹名，更新下载链接'
+
+    def __call__(self, dir_paths: Union[str, List[str]], root=True, *args, **kwargs):
+        if isinstance(dir_paths, str):
+            dir_paths = [dir_paths]
+
+        for dir_path in dir_paths:
+            url_set = UrlSet(dir_path)
+            for sub_path in tqdm(os.listdir(dir_path)):
+                if os.path.isdir(os.path.join(dir_path, sub_path)):
+                    url_set.add(sub_path)
+
+
+class CheckCls(Command):
+    name = 'check_cls'
+
+    cmd = 'cls'
+
+    help_doc = '清屏'
+
+    def __call__(self, root=True, *args, **kwargs):
+        os.system('clear')
+
+
+class CheckOCR(Command):
+    name = 'check_ocr'
+
+    cmd = 'ocr'
+
+    help_doc = '调用百度ocr接口进行文字识别'
+
+    def __call__(self, dir_names: Union[str, List[str]], root=True, *args, **kwargs):
+        if isinstance(dir_names, str):
+            dir_names = [dir_names]
+
+        for dir_name in dir_names:
+            if not os.path.isdir(dir_name):
                 continue
 
-            video_path = os.path.join(path, 'video.mp4')
-            video_duration += m3u8.video_duration(video_path)
+            video_path = os.path.join(dir_name, 'video.mp4')
+            srt_path = os.path.join(dir_name, 'subtitle.srt')
+            audio_path = os.path.join(dir_name, 'audio.wav')
+            if os.path.exists(video_path) and not os.path.exists(srt_path):
+                if ocr.subtitle_ocr(video_path, srt_path) == 0:
+                    CheckDelete()(dir_name, root=False)
+                    CheckCls()(root=False)
+                    continue
 
-    if unit == 'h':
-        video_duration /= 3600
-    elif unit == 'm':
-        video_duration /= 60
-
-    print(f'视频总时长: {video_duration: .2f}{unit}')
-
-    return video_duration
-
-
-def check_num_files(path: str = None) -> int:
-    """
-    检查 path 下的文件数量
-
-    :param path: 文件夹地址
-
-    :return: 文件数量
-    """
-    if path is None:
-        path = input('输入文件夹地址: ')
-
-    if not os.path.exists(path):
-        num_files = 0
-    elif not os.path.isdir(path):
-        num_files = 1
-    else:
-        num_files = len(os.listdir(path))
-
-    print(f'文件夹 {path} 下共有 {num_files} 个文件')
-
-    return num_files
+            CheckCls()(root=False)
+            m3u8.video2audio(video_path, audio_path, cover=False)
+            CheckDelete()(video_path, root=False)
 
 
-def check_dfs_num_files(path: str = None, root=True) -> int:
-    """
-    递归检查 path 下的文件数量
+class CheckPrint(Command):
+    name = 'check_print'
 
-    :param path: 文件夹地址
+    cmd = 'print'
 
-    :param root: 是否是根目录
+    help_doc = '打印一个值'
 
-    :return: 文件数量
-    """
-    if path is None:
-        path = input('输入文件夹地址: ')
-
-    num_files = 0
-    if not os.path.exists(path):
-        num_files = 0
-    elif not os.path.isdir(path):
-        num_files = 1
-    else:
-        for sub_path in os.listdir(path):
-            sub_path = os.path.join(path, sub_path)
-            num_files += check_dfs_num_files(sub_path, False)
-
-    if root:
-        print(f'文件夹 {path} 下共有 {num_files} 个文件')
-
-    return num_files
-
-
-def check_delete(dir_name: str) -> None:
-    """
-    删除 dir_name 文件或文件夹
-
-    :param dir_name: 文件夹名
-    """
-    if os.path.exists(dir_name):
-        if os.path.isdir(dir_name):
-            shutil.rmtree(dir_name)
-            print(f'删除文件夹 {dir_name}')
+    def __call__(self, value, root=True, *args, **kwargs):
+        if isinstance(value, list):
+            print('\n'.join(value) + f"\ntype = list\ntotal = {len(value)}")
         else:
-            os.remove(dir_name)
-            print(f'删除文件 {dir_name}')
+            print(value)
+        return value
 
 
-def check_deletes(dir_names: Union[str, List[str]]) -> None:
-    """
-    批量删除 ./dir_name 文件夹
+class CheckHelp(Command):
+    name = 'check_help'
 
-    :param dir_names: 文件夹名列表
-    """
-    if isinstance(dir_names, str):
-        dir_names = [dir_names]
+    cmd = 'help'
 
-    for dir_name in dir_names:
-        check_delete(dir_name)
+    help_doc = '打印帮助信息'
 
-
-def check_size(dir_name, unit: Optional[str] = 'g') -> Tuple[float, int]:
-    """
-    检查 文件夹的大小
-
-    :param dir_name:
-
-    :param unit: 单位, 可选: b (B), k (KB), m (MB), g (GB) t(TB)
-
-    :return: 文件夹大小
-    """
-    dir_name = os.path.join(ROOT, dir_name)
-
-    size, cnt = 0, 0
-    if os.path.isdir(dir_name):
-        for sub_path in os.listdir(dir_name):
-            _size, _cnt = check_size(os.path.join(dir_name, sub_path), None)
-
-            size += _size
-            cnt += _cnt
-    else:
-        cnt = 1
-        size = os.path.getsize(dir_name)
-
-    if unit == 'k':
-        size /= 1024
-    elif unit == 'm':
-        size /= 1024 ** 2
-    elif unit == 'g':
-        size /= 1024 ** 3
-    elif unit == 't':
-        size /= 1024 ** 4
-
-    if unit:
-        print(f'{dir_name} 大小为 {size: .2f}{unit}  共有{cnt} 个文件)')
-    return size, cnt
+    def __call__(self, _help=None, *args, **kwargs):
+        if _help is None:
+            print('可用命令:')
+            for command in COMMANDS:
+                print(f'name: {command.name}\n')
+        else:
+            for command in COMMANDS:
+                if command.name == _help:
+                    print(f'name: {command.name}\n'
+                          f'cmd: {command.cmd}\n'
+                          f'help_doc: {command.help_doc}\n')
 
 
-def ls(dir_name) -> List[str]:
-    """
-    列出文件夹下的文件
+class CheckHistoryReturns(Command):
+    name = 'check_history_returns'
 
-    :param dir_name: 文件夹名
+    cmd = 'his'
 
-    :return: 文件列表
-    """
-    paths = [os.path.join(ROOT, dir_name, name) for name in os.listdir(dir_name)]
-    return paths
+    help_doc = '获取历史命令的返回值'
 
-
-def video_is_error(dir_names: Union[str, List[str]]):
-    """
-    判断文件夹下的 video.pm4 是否损坏
-
-    :param dir_names: 文件夹地址
-
-    :return: 返回损坏的 video.mp4 路径
-    """
-    broken_videos = []
-    for dir_names in tqdm(dir_names):
-        video_path = os.path.join(dir_names, 'video.mp4')
-        if not os.path.exists(video_path):
-            continue
-
-        if not m3u8.video_is_ok(video_path):
-            broken_videos.append(video_path)
-
-    return broken_videos
+    def __call__(self, index: int = -1, *args, **kwargs):
+        return HISTORY_RETURNS[int(index)]
 
 
-def check_dir_names(paths: Union[str, List[str]]):
-    """
-    获取路径的目录名
+COMMANDS = {CheckDuration(), CheckDFSNumFiles(), CheckDelete(), CheckSize(), CheckLs(), CheckVideoIsError(),
+            CheckVideo2Audio(), CheckDirNames(), CheckUpdateDownloadUrls(), CheckCls(), CheckOCR(), CheckPrint(),
+            CheckHelp(), CheckHistoryReturns()}
 
-    :param paths: 路径列表
-
-    :return: 路径的目录名列表
-    """
-    if isinstance(paths, str):
-        paths = [paths]
-
-    return [os.path.dirname(path) for path in paths if os.path.exists(path)]
+# 历史命令返回值
+HISTORY_RETURNS = []
 
 
-def check_print(value):
-    """
-    打印一个值
-
-    :param value: 值
-    """
-    if isinstance(value, list):
-        print('\n'.join(value) + f"\n\ntotal = {len(value)}")
-    else:
-        print(value)
-    return value
-
-
-def check_help(args=None) -> None:
-    """
-    打印命令列表
-    """
-    print('命令列表: ', '\n'.join(COMMANDS.keys()))
-
-
-def run_command(command: str, args):
+def run_command(command: str, *args):
     """
     运行一个命令
 
@@ -267,11 +299,12 @@ def run_command(command: str, args):
 
     :return: 命令的返回值
     """
-    if command in COMMANDS.keys():
-        return COMMANDS[command](args)
-    else:
-        # command 不存在的情况下将 command 解析为一个输入命令
-        return command
+
+    for cmd in COMMANDS:
+        if cmd == command:
+            return cmd(*args)
+
+    return command
 
 
 def run_chain_commands(commands: str):
@@ -291,109 +324,6 @@ def run_chain_commands(commands: str):
         ret = run_command(command, ret)
 
     return ret
-
-
-def get_history_returns(index=-1):
-    """
-    获取历史命令的返回值
-
-    :param index: 历史命令的索引
-
-    :return:
-    """
-    return HISTORY_RETURNS[int(index)]
-
-
-def check_vi2au(dirs_path: Union[str, List[str]]):
-    """
-    视频格式转换 mp4 -> wav
-
-    :param dirs_path: 存储视频的文件夹的路径列表, 如 xxx/video_path/video.mp4
-
-    :return: None
-    """
-    if isinstance(dirs_path, str):
-        dirs_path = [dirs_path]
-
-    for dir_path in dirs_path:
-        if not os.path.isdir(dir_path):
-            continue
-
-        video_path = os.path.join(dir_path, 'video.mp4')
-
-        if not os.path.exists(video_path) or not m3u8.video2audio(video_path):
-            check_delete(dir_path)
-
-
-def check_update_download_urls(dir_paths: Union[str, List[str]]):
-    """
-    根据子文件夹名，更新下载链接
-
-    :param dir_paths: 下载链接文件所在文件夹
-
-    :return: None
-    """
-    if not isinstance(dir_paths, list):
-        dir_paths = [dir_paths]
-
-    for dir_path in dir_paths:
-        url_set = UrlSet(dir_path)
-        for sub_path in tqdm(os.listdir(dir_path)):
-            if os.path.isdir(os.path.join(dir_path, sub_path)):
-                url_set.add(sub_path)
-
-
-def check_ocr(dir_names: Union[str, List[str]]):
-    """
-    调用百度ocr接口进行文字识别
-
-    识别完成后，会在视频文件夹下生成 subtitle.srt 文件，并生成对应的音频文件, 删除 video.mp4 文件
-
-    :param dir_names: 视频文件夹路径, 视频路径为 dir_name/video.mp4
-    """
-    if not isinstance(dir_names, list):
-        dir_names = [dir_names]
-
-    for dir_name in tqdm(dir_names):
-        if not os.path.isdir(dir_name):
-            continue
-
-        video_path = os.path.join(dir_name, 'video.mp4')
-        srt_path = os.path.join(dir_name, 'subtitle.srt')
-        audio_path = os.path.join(dir_name, 'audio.wav')
-        if os.path.exists(video_path) and not os.path.exists(srt_path):
-            if ocr.subtitle_ocr(video_path, srt_path) == 0:
-                check_delete(dir_name)
-                os.system('cls')
-                continue
-
-        os.system('cls')
-        m3u8.video2audio(video_path, audio_path, cover=False)
-        check_delete(video_path)
-
-
-# 历史命令返回值
-HISTORY_RETURNS = []
-
-
-COMMANDS = {'help': check_help,
-            'duration': check_duration,
-            'num_files': check_num_files,
-            'dfs_num_files': check_dfs_num_files,
-            'del': check_deletes,
-            'size': check_size,
-            'ls': ls,
-            'is_error': video_is_error,
-            'dir_names': check_dir_names,
-            'len': len,
-            'print': check_print,
-            'split': str.split,
-            'his': get_history_returns,
-            'cwd': ROOT,
-            'v2a': check_vi2au,
-            'update_urls': check_update_download_urls,
-            'ocr': check_ocr,
-            }
 
 
 def main():

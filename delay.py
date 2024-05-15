@@ -1,4 +1,5 @@
 import time
+import datetime
 import random
 
 
@@ -59,3 +60,12 @@ def get_ramdom_num(length: int = 1):
     assert length > 0, '应当满足 length > 0'
 
     return ''.join(str(random.randint(0, 9)) for _ in range(length))
+
+
+def run_date(func):
+    def wrapper(*args, **kwargs):
+        print(datetime.datetime.now().strftime('start at: [%Y-%m-%d %H:%M:%S]'))
+        func(*args, **kwargs)
+        print(datetime.datetime.now().strftime('end   at: [%Y-%m-%d %H:%M:%S]'))
+
+    return wrapper
